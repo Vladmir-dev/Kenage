@@ -45,12 +45,25 @@
 //export default ShopCart
 
 import React, { useState } from "react"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 const ShopCart = ({ shopItems, addToCart }) => {
+  const user = useSelector((state) => state.users.currentUser)
+  let navigate = useNavigate()
   const [count, setCount] = useState(0)
   const increment = () => {
     setCount(count + 1)
   }
+
+
+  const AddToCart = (items) => {
+    if(user === null){
+      navigate('/login')
+    }else{
+     addToCart(items)
+    }
+ }
 
   return (
     <>
@@ -80,7 +93,7 @@ const ShopCart = ({ shopItems, addToCart }) => {
                   {/* step : 3  
                      if hami le button ma click garryo bahne 
                     */}
-                  <button onClick={() => addToCart(shopItems)}>
+                  <button onClick={() => AddToCart(shopItems)}>
                     <i style={{color:'#FF5722'}} className='fa fa-plus'></i>
                   </button>
                 </div>

@@ -1,8 +1,11 @@
 import React from 'react'
 import Catg from '../components/shops/Catg'
 import ShopCart from '../components/shops/ShopCart'
+import Header from '../common/header/Header'
+import Footer from '../common/footer/Footer'
+import Wrapper from '../components/wrapper/Wrapper'
 
-const Adults = ({addToCart, shopItems}) => {
+const Adults = ({addToCart, shopItems, CartItem}) => {
     const categories = [
         {
             cateName:"Clothes"
@@ -12,6 +15,8 @@ const Adults = ({addToCart, shopItems}) => {
         }
     ]
   return (
+    <>
+    <Header CartItem={CartItem}/>
     <div className='pt-[70px] pb-[70px] bg-[#f6f9fc]'>
     <div className='flex w-full px-[70px] justify-around'>
             <button className='p-1 bg-white md:text-[35px] md:px-[50px] rounded-md text-[#FF5722] border-solid border-[2px] hover:bg-[#FF5722] hover:text-white duration-500'>Men</button>
@@ -38,6 +43,9 @@ const Adults = ({addToCart, shopItems}) => {
         </div>
       </section> 
     </div>
+    <Wrapper />
+    <Footer />
+    </>
   )
 }
 

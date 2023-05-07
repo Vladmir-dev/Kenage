@@ -8,11 +8,11 @@ import '@fortawesome/fontawesome-free/css/all.css'
 
 const Header = ({ CartItem }) => {
   return (
-    <>
+    <div className="">
       <Head />
       <Search CartItem={CartItem} />
       <Navbar />
-    </>
+    </div>
   )
 }
 

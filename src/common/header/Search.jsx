@@ -13,7 +13,7 @@ const Search = ({ CartItem }) => {
 
   return (
     <>
-      <section className='md:py-[20px] md:px-[0px] py-[15px] px-[0px]'>
+      <section className='md:py-[20px] md:px-[0px] py-[15px] px-[0px] bg-white'>
         <div className='container c_flex'>
           <div className='logo width '>
           <img src={logo} alt='logo' className="md:w-[100px] w-[80px]" />
@@ -26,9 +26,12 @@ const Search = ({ CartItem }) => {
 
           <div className="hidden md:block">
             <div className='icon flex justify-center items-center md:gap-5 gap-2'>
-            <div className="flex justify-center rounded-full bg-[#f6f9fc] md:p-[18px] p-[8px]">
+              <Link to="/profile">
+              <div className="flex justify-center rounded-full bg-[#f6f9fc] md:p-[18px] p-[8px]">
               <i className='fa fa-user'></i>
             </div>
+              </Link>
+            
             
             <div className='cart'>
               <Link to='/cart'>

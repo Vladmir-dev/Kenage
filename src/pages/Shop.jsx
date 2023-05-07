@@ -2,8 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import adul from '../assets/adults.jpg'
 import child from '../assets/chil.png'
+import Header from '../common/header/Header'
+import Footer from '../common/footer/Footer'
+import Wrapper from '../components/wrapper/Wrapper'
 
-const Shop = () => {
+const Shop = ({CartItem}) => {
   const style1 = {
     backgroundImage: `url(${adul})`,
       backgroundPosition: "center",
@@ -15,6 +18,7 @@ const Shop = () => {
 
   return (
     <>
+    <Header CartItem={CartItem}/>
     <section className='mt-[70px] mb-[70px] flex md:flex-row flex-col justify-center items-center gap-10'>
       <Link to='/adults'>
       <div
@@ -37,7 +41,8 @@ const Shop = () => {
       </Link>
       
     </section>
-    
+    <Wrapper />
+    <Footer />
     </>
   )
 }

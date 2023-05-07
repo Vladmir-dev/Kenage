@@ -3,6 +3,9 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import '@fortawesome/fontawesome-free/css/all.css'
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+
 
 
 const SampleNextArrow = (props) => {
@@ -26,6 +29,8 @@ const SamplePrevArrow = (props) => {
   )
 }
 const FlashCard = ({ productItems, addToCart }) => {
+  const user = useSelector((state) => state.users.currentUser)
+  let navigate = useNavigate()
   const [count, setCount] = useState(0)
   const increment = () => {
     setCount(count + 1)
@@ -50,6 +55,14 @@ const FlashCard = ({ productItems, addToCart }) => {
         }
       }
     ]
+  }
+
+  const AddToCart = (items) => {
+     if(user === null){
+       navigate('/login')
+     }else{
+      addToCart(items)
+     }
   }
 
   return (
@@ -78,7 +91,10 @@ const FlashCard = ({ productItems, addToCart }) => {
                   </div>
                   <div className='price'>
                     <h4 style={{color:'#FF5722'}}>${productItems.price}.00 </h4>
-                    <button onClick={() => addToCart(productItems)}>
+                    <button onClick={() =>
+                      AddToCart(productItems) 
+                      // addToCart(productItems)
+                      }>
                       <i style={{color:'#FF5722'}} className='fa fa-plus'></i>
                     </button>
                   </div>

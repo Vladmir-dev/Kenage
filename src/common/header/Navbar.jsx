@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className='header'>
+      <header className='header shadow-md bg-white '>
         <div className='container d_flex'>
           {/* <div className='catgrories d_flex hidden md:block'>
             <span className='fa-solid fa-border-all'></span>
@@ -41,11 +41,9 @@ const Navbar = () => {
                 } */}
                 
               <li>
-                <Link to='/user'>user account</Link>
+                <Link to='/profile'>user account</Link>
               </li>
-              <li>
-                <Link to='/vendor'>vendor account</Link>
-              </li>
+          
               <li>
                 {/* <Link to='/track'>track my order</Link> */}
               </li>
@@ -53,6 +51,7 @@ const Navbar = () => {
               <li>
                 <Link to='/contact'>contact</Link>
               </li>
+              
               <li className="md:hidden flex justify-center">
               <div className="flex justify-center rounded-full bg-[#f6f9fc] md:p-[18px] p-[8px]">
               <Link>

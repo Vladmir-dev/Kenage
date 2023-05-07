@@ -1,5 +1,7 @@
 import React from "react"
 import "./style.css"
+import Footer from "../footer/Footer"
+import Header from "../header/Header"
 
 const Cart = ({ CartItem, addToCart, decreaseQty }) => {
   // Stpe: 7   calucate total of items
@@ -8,6 +10,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
   // prodcut qty total
   return (
     <>
+    <Header CartItem={CartItem}/>
       <section className='cart-items'>
         <div className='container md:flex md:gap-[500px]'>
           {/* if hamro cart ma kunai pani item xaina bhane no diplay */}
@@ -74,6 +77,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   )
 }

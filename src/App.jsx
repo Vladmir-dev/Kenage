@@ -11,8 +11,12 @@ import Shop from './pages/Shop'
 import Adults from "./pages/Adults"
 import Children from "./pages/Children"
 import Checkout from "./components/Checkout"
-// import { Provider } from "react-redux"
-// import { store } from './redux/store'
+import Login from "./pages/Login"
+import Signup from "./pages/Signup"
+import { Provider } from "react-redux"
+import  store  from './features/store'
+import Profile from "./pages/Profile"
+import Contact from "./pages/Contact"
 // import { Shop } from "@mui/icons-material"
 
 function App() {
@@ -76,22 +80,25 @@ function App() {
 
   return (
     <div className="w-full">
-    {/* <Provider store={store}> */}
+    <Provider store={store}>
       <Router>
-        <Header CartItem={CartItem} />
+        {/* <Header CartItem={CartItem} /> */}
         <Routes>
-          <Route exact path='/' element={<Pages productItems={productItems} addToCart={addToCart} shopItems={shopItems} />} />
-            
+          <Route exact path='/' element={<Pages productItems={productItems} addToCart={addToCart} shopItems={shopItems} CartItem={CartItem}/>} />  
           <Route path='/cart' element={<Cart CartItem={CartItem} addToCart={addToCart} decreaseQty={decreaseQty} />} />
-          <Route path='/shop' element={<Shop />}/> 
-          <Route path='/adults' element={<Adults addToCart={addToCart} shopItems={shopItems}/>}/>
-          <Route path='/children' element={<Children addToCart={addToCart} shopItems={shopItems}/>}/> 
-          <Route path="/checkout" element={<Checkout />}/>  
+          <Route path='/shop' element={<Shop CartItem={CartItem}/>} /> 
+          <Route path='/adults' element={<Adults addToCart={addToCart} shopItems={shopItems} CartItem={CartItem}/>}/>
+          <Route path='/children' element={<Children addToCart={addToCart} shopItems={shopItems} CartItem={CartItem}/>} /> 
+          <Route path="/checkout" element={<Checkout CartItem={CartItem}/>} />
+          <Route path="/login" element={<Login />}/>
+          <Route path="/signup" element={<Signup />}/> 
+          <Route path="/profile" element={<Profile CartItem={CartItem} />}/> 
+          <Route path="/contact" element={<Contact CartItem={CartItem}/>}/>
           {/* </Route> */}
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
-      {/* </Provider> */}
+      </Provider>
     </div>
   )
 }
