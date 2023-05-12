@@ -17,6 +17,7 @@ import { Provider } from "react-redux"
 import  store  from './features/store'
 import Profile from "./pages/Profile"
 import Contact from "./pages/Contact"
+import Otp from "./pages/Otp"
 // import { Shop } from "@mui/icons-material"
 
 function App() {
@@ -94,6 +95,7 @@ function App() {
           <Route path="/signup" element={<Signup />}/> 
           <Route path="/profile" element={<Profile CartItem={CartItem} />}/> 
           <Route path="/contact" element={<Contact CartItem={CartItem}/>}/>
+          <Route path="/otp" element={<Otp />}/>
           {/* </Route> */}
         </Routes>
         {/* <Footer /> */}

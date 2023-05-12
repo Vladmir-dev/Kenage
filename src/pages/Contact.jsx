@@ -1,10 +1,32 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Header from '../common/header/Header'
 import Footer from '../common/footer/Footer'
 import child from "../assets/chil.png"
 import Wrapper from '../components/wrapper/Wrapper'
+import Axios from 'axios'
 
 const Contact = ({CartItem}) => {
+  // const [image,setImage] = useState(null)
+  
+  // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODgzNTQ1MTF9.s5id-sJm-HM-l-ijtFtH08mF6IIK0NpYtV6_B9cZSGw"
+  // const handleSubmit = (event) => {
+  //   event.preventDefault()
+
+  //   if(image){
+  //     const formdata = new FormData()
+  //     formdata.append('photo', image)
+  //     for(let [key, value] of formdata){
+  //       console.log(`${key}: ${value}`)
+  //     }
+  //     Axios.post('http://localhost:8000/api/v1/auth/profile_photo/2/',
+  //     formdata,
+  //      {
+  //       Headers:{'Authorization':`Bearer ${token}`}
+  //      }
+  //     ).then((res) => console.log("response ==>",res.data)).catch((err) => console.log(err))
+  //     // console.log(formdata)
+  //   }
+  // }
   return (
     <div>
         <Header CartItem={CartItem}/>
@@ -25,7 +47,10 @@ const Contact = ({CartItem}) => {
             </div>
 
             <div className='md:w-[77%] shadow-md rounded-md p-4 mt-[50px] bg-white flex justify-center items-center'>
-              jjdjekek
+            {/* <form onSubmit={handleSubmit}>
+          <input type='file' onChange={(e) => setImage(e.target.files[0])} accept='image/*'/>
+          <button type='submit' className='bg-red-500 p-4'>Upload</button>
+        </form> */}
             </div>
             <Wrapper />
         </div>

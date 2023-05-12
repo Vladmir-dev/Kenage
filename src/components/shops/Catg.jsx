@@ -1,6 +1,6 @@
 import React from "react"
 
-const Catg = ({categories}) => {
+const Catg = ({categories, setCateg}) => {
 let cdata = []
 
   const data = [
@@ -39,7 +39,7 @@ let cdata = []
         </div>
         {cdata.map((value, index) => {
           return (
-            <div className='box f_flex' key={index}>
+            <div className='box f_flex' onClick={() => setCateg(value.cateName)}  key={index}>
               {/* <img src={value.cateImg} alt='' /> */}
               <span>{value.cateName}</span>
             </div>

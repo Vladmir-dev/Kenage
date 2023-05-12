@@ -2,6 +2,7 @@ import React from "react"
 import "./style.css"
 import Footer from "../footer/Footer"
 import Header from "../header/Header"
+import { Link } from "react-router-dom"
 
 const Cart = ({ CartItem, addToCart, decreaseQty }) => {
   // Stpe: 7   calucate total of items
@@ -11,7 +12,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
   return (
     <>
     <Header CartItem={CartItem}/>
-      <section className='cart-items'>
+      <section className='cart-items mt-1'>
         <div className='container md:flex md:gap-[500px]'>
           {/* if hamro cart ma kunai pani item xaina bhane no diplay */}
 
@@ -75,7 +76,11 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
               <h3 style={{color:'#FF5722'}}>${totalPrice}.00</h3>
             </div>
           </div>
+          
         </div>
+        <div className="w-full flex item center md:mt-[50px] justify-center font-serif">
+          <Link to="/checkout"><button className="hover:bg-[#FF5722] border-solid border-[2px] border-[#FF5722] p-4 rounded-md font-bold text-[#FF5722] duration-500 shadow-xl hover:text-white text-[20px]">Proceed To Checkout</button></Link>
+          </div>
       </section>
       <Footer />
     </>

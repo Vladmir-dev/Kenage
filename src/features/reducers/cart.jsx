@@ -15,6 +15,13 @@ const cartSlice = createSlice({
 
 
 
+// const fashDealsSlice = createSlice({
+//     name:'flash',
+//     initialState:{items:[]},
+
+// })
+
+
 
 
 

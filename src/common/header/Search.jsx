@@ -6,10 +6,10 @@ import '@fortawesome/fontawesome-free/css/all.css'
 
 const Search = ({ CartItem }) => {
   // fixed Header
-  window.addEventListener("scroll", function () {
-    const search = document.querySelector(".search")
-    search.classList.toggle("active", window.scrollY > 100)
-  })
+  // window.addEventListener("scroll", function () {
+  //   const search = document.querySelector(".search")
+  //   search.classList.toggle("active", window.scrollY > 100)
+  // })
 
   return (
     <>

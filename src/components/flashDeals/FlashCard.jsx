@@ -1,11 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import '@fortawesome/fontawesome-free/css/all.css'
-import { useSelector } from "react-redux"
+import { useSelector,useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-
+import { fetch_flash_deals } from "../../features/actions"
 
 
 const SampleNextArrow = (props) => {
@@ -29,7 +29,21 @@ const SamplePrevArrow = (props) => {
   )
 }
 const FlashCard = ({ productItems, addToCart }) => {
+  const dispatch = useDispatch()
+
+ 
+
   const user = useSelector((state) => state.users.currentUser)
+  const products = useSelector((state) => state.products.flashDeals)
+  const token = useSelector((state) => state.users.token)
+  // console.log("products ===>",products)
+  
+  useEffect(() => {
+    // console.log("UseEffect")
+    dispatch(fetch_flash_deals(token));
+    // console.log("after UseEffect")
+  }, []);
+
   let navigate = useNavigate()
   const [count, setCount] = useState(0)
   const increment = () => {
@@ -57,8 +71,10 @@ const FlashCard = ({ productItems, addToCart }) => {
     ]
   }
 
+
+
   const AddToCart = (items) => {
-     if(user === null){
+     if(user !== null){
        navigate('/login')
      }else{
       addToCart(items)
@@ -68,9 +84,9 @@ const FlashCard = ({ productItems, addToCart }) => {
   return (
     <div className="">
       <Slider {...settings}>
-        {productItems.map((productItems) => {
+        {products.map((productItems, key) => {
           return (
-            <div className='box'>
+            <div key={key} className='box'>
               <div className='product mtop'>
                 <div className='img'>
                   <span style={{background:'#FF5722'}} className='discount'>{productItems.discount}% Off</span>
