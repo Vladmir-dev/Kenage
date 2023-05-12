@@ -10,7 +10,7 @@ import { fetch_boys_clothes, fetch_boys_shoes, fetch_girls_clothes, fetch_girls_
 const Children = ({addToCart, shopItems, CartItem}) => {
 
   const dispatch = useDispatch()
-  const token = useSelector((state) => state.users.token)
+  // const token = useSelector((state) => state.users.token)
   const boy_cloth = useSelector((state) => state.products.boy_clothes)
   const boy_shoe = useSelector((state) => state.products.boy_shoes)
   const girl_cloth = useSelector((state) => state.products.girl_clothes)
@@ -24,12 +24,9 @@ const Children = ({addToCart, shopItems, CartItem}) => {
   // console.log("girl's shoes", girl_shoe)
 
 
-  useEffect(() => {
-    dispatch(fetch_boys_clothes(token))
-    dispatch(fetch_boys_shoes(token))
-    dispatch(fetch_girls_clothes(token))
-    dispatch(fetch_girls_shoes(token))
-  },[])
+  // useEffect(() => {
+    
+  // },[])
 
   const categories = [
       {

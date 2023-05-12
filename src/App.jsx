@@ -18,6 +18,7 @@ import  store  from './features/store'
 import Profile from "./pages/Profile"
 import Contact from "./pages/Contact"
 import Otp from "./pages/Otp"
+import Search from "./pages/Search"
 // import { Shop } from "@mui/icons-material"
 
 function App() {
@@ -96,6 +97,7 @@ function App() {
           <Route path="/profile" element={<Profile CartItem={CartItem} />}/> 
           <Route path="/contact" element={<Contact CartItem={CartItem}/>}/>
           <Route path="/otp" element={<Otp />}/>
+          <Route path="/search" element={<Search CartItem={CartItem} addToCart={addToCart}/>}/>
           {/* </Route> */}
         </Routes>
         {/* <Footer /> */}

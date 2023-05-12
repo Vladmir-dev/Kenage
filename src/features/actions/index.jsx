@@ -868,3 +868,33 @@ export const signup = createAsyncThunk(
       }
     }
   );
+
+
+
+  export const fetch_results = createAsyncThunk(
+    "search/fetch_results",
+    async (data, { getState, rejectWithValue }) => {
+      console.log("data ==>",data)
+     try{
+        // console.log(token);
+        // let response = await Axios.post(
+        //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
+        //   bodyContent,
+        //   headersList
+        // );
+        // let data = await response.data
+        // let data = response.data.swaps.sort((a, b) => {
+        //   new Date(a.date) - new Date(b.date);
+        // });
+        // console.log("my datattatat from men' s ==>", data);
+  
+        return data;
+      } catch (error) {
+        if (error.response && error.response.data.message) {
+          return rejectWithValue(error.response.data.message);
+        } else {
+          return rejectWithValue(error.response.data);
+        }
+      }
+    }
+  );

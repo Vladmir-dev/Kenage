@@ -18,19 +18,14 @@ const Adults = ({addToCart, shopItems, CartItem}) => {
   const women_cloth = useSelector((state) => state.products.women_clothes)
   const women_shoe = useSelector((state) => state.products.women_shoes)
   const token = useSelector((state) => state.users.token)
-  // console.log("men's clothes ==>", men_cloth)
-  // console.log("men's shoes ==>", men_shoe)
-  // console.log("women's clothes ==>", women_cloth)
-  // console.log("women's shoes ==>", women_shoe)
+  console.log("men's clothes ==>", men_cloth)
+  console.log("men's shoes ==>", men_shoe)
+  console.log("women's clothes ==>", women_cloth)
+  console.log("women's shoes ==>", women_shoe)
   // console.log("prod dndn clothes ==>", products)
 
    
-  useEffect(() => {
-    dispatch(fetch_men_clothes(token));
-    dispatch(fetch_men_shoes(token));
-    dispatch(fetch_women_clothes(token));
-    dispatch(fetch_women_shoes(token));
-  },[])
+ 
 
     const categories = [
         {
