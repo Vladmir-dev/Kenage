@@ -18,17 +18,31 @@ const Config = {
   },
 };
 
-export const fetchProducts = () => async (dispatch) => {
-    try{
-        dispatch(fetchProductStart())
-        const response = await axios.get('')
-        const data = await response.json()
-        dispatch(fetchProductSuccess(data))
-    }catch(error){
-        dispatch(fetchProductFailure(error.message))
+export const otp = createAsyncThunk(
+  "auth/otp",
+  async (code, { getState, rejectWithValue, dispatch }) => {
+    console.log("login details ===>", code)
+    // console.log("login details ===>", kenageApi)
+    try {
+      console.log("login details ===>", code)
+      // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
+      const  {data}  = await axios.post(
+        `https://kenagecollapi.onrender.com/api/auth/confirm/${code}`,
+        Config
+      );
+      //  navigate("/")
+      console.log("response =====>", data)
+      return data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        // dispatch(setError("Incorrect credentials"));
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.response.data);
+      }
     }
-}
-
+  }
+);
 
 
 export const login = createAsyncThunk(

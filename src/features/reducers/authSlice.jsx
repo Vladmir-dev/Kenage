@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, signup } from "../actions";
+import { login, signup, otp } from "../actions";
 
 const authSlice = createSlice({
     name: 'auth',
@@ -70,10 +70,28 @@ const authSlice = createSlice({
     state.isLoading = false;
     state.message = action.payload;
   })
+
   builder.addCase(signup.rejected, (state, action) => {
     state.isLoading = false;
     state.error = action.payload
   })
+
+//otp
+  builder.addCase(otp.pending, (state) => {
+    state.isLoading = true;
+    state.error = null;
+  })
+
+  builder.addCase(otp.fulfilled, (state, action) => {
+    state.isLoading = false;
+    state.message = action.payload;
+  })
+  
+  builder.addCase(otp.rejected, (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload
+  })
+
   }
 })
 

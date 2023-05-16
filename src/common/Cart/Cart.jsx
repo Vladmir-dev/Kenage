@@ -3,12 +3,24 @@ import "./style.css"
 import Footer from "../footer/Footer"
 import Header from "../header/Header"
 import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 const Cart = ({ CartItem, addToCart, decreaseQty }) => {
-  // Stpe: 7   calucate total of items
+  let navigate = useNavigate()
+
   const totalPrice = CartItem.reduce((price, item) => price + item.qty * item.price, 0)
 
+  const user = useSelector((state) => state.users.currentUser)
   // prodcut qty total
+  const handleCheckOut = () => {
+    if (user !== null){
+      navigate("/checkout")
+    }else{
+      navigate("/login")
+    }
+  }
+
   return (
     <>
     <Header CartItem={CartItem}/>
@@ -79,7 +91,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
           
         </div>
         <div className="w-full flex item center md:mt-[50px] justify-center font-serif">
-          <Link to="/checkout"><button className="hover:bg-[#FF5722] border-solid border-[2px] border-[#FF5722] p-4 rounded-md font-bold text-[#FF5722] duration-500 shadow-xl hover:text-white text-[20px]">Proceed To Checkout</button></Link>
+          <button onClick={handleCheckOut} className="hover:bg-[#FF5722] border-solid border-[2px] border-[#FF5722] p-4 rounded-md font-bold text-[#FF5722] duration-500 shadow-xl hover:text-white text-[20px]">Proceed To Checkout</button>
           </div>
       </section>
       <Footer />

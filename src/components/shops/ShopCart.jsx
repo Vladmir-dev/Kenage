@@ -93,7 +93,7 @@ const ShopCart = ({ shopItems, addToCart }) => {
                   {/* step : 3  
                      if hami le button ma click garryo bahne 
                     */}
-                  <button onClick={() => AddToCart(shopItems)}>
+                  <button onClick={() => addToCart(shopItems)}>
                     <i style={{color:'#FF5722'}} className='fa fa-plus'></i>
                   </button>
                 </div>

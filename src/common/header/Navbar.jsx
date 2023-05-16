@@ -49,7 +49,7 @@ const Navbar = () => {
               </li>
 
               <li>
-                <Link to='/contact'>contact</Link>
+                <Link to='/contact'>About</Link>
               </li>
               
               <li className="md:hidden flex justify-center">
