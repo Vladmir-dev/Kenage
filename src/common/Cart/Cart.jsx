@@ -3,15 +3,21 @@ import "./style.css"
 import Footer from "../footer/Footer"
 import Header from "../header/Header"
 import { Link } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { add_to_cart, decrease_qty } from "../../features/actions"
+import Wrapper from "../../components/wrapper/Wrapper"
 
 const Cart = ({ CartItem, addToCart, decreaseQty }) => {
   let navigate = useNavigate()
-
-  const totalPrice = CartItem.reduce((price, item) => price + item.qty * item.price, 0)
+  const dispatch = useDispatch()
+  
 
   const user = useSelector((state) => state.users.currentUser)
+  const cart = useSelector((state) => state.cart.cartItems)
+  console.log("cart", cart)
+  const totalPrice = cart.reduce((price, item) => price + item.qty * item.price, 0)
+
   // prodcut qty total
   const handleCheckOut = () => {
     if (user !== null){
@@ -29,10 +35,10 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
           {/* if hamro cart ma kunai pani item xaina bhane no diplay */}
 
           <div className=''>
-            {CartItem.length === 0 && <h1 className='no-items product'>No Items are add in Cart</h1>}
+            {cart.length === 0 && <h1 className='no-items product'>No Items are add in Cart</h1>}
 
             {/* yasma hami le cart item lai display garaaxa */}
-            {CartItem.map((item) => {
+            {cart.map((item) => {
               const productQty = item.price * item.qty
 
               return (
@@ -59,7 +65,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
                     product ko qty lai inc ra des garne
                     */}
                     <div className='cartControl d_flex'>
-                      <button className='incCart' onClick={() => addToCart(item)}>
+                      <button className='incCart' onClick={() => dispatch(add_to_cart(item))}>
                         <i style={{color:'#FF5722'}} className='fa-solid fa-plus'></i>
                       </button>
                       <button>
@@ -68,7 +74,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
                       </h1>
                       
                       </button>
-                      <button className='desCart' onClick={() => decreaseQty(item)}>
+                      <button className='desCart' onClick={() => dispatch(decrease_qty(item))}>
                         <i  className='fa-solid fa-minus'></i>
                       </button>
                     </div>
@@ -94,6 +100,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
           <button onClick={handleCheckOut} className="hover:bg-[#FF5722] border-solid border-[2px] border-[#FF5722] p-4 rounded-md font-bold text-[#FF5722] duration-500 shadow-xl hover:text-white text-[20px]">Proceed To Checkout</button>
           </div>
       </section>
+      <Wrapper />
       <Footer />
     </>
   )

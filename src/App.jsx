@@ -19,6 +19,8 @@ import Profile from "./pages/Profile"
 import Contact from "./pages/Contact"
 import Otp from "./pages/Otp"
 import Search from "./pages/Search"
+import { PersistGate } from "redux-persist/integration/react"
+import { persistedStore } from "./features/store"
 // import { Shop } from "@mui/icons-material"
 
 function App() {
@@ -83,6 +85,7 @@ function App() {
   return (
     <div className="w-full">
     <Provider store={store}>
+      <PersistGate oading={null} persistor={persistedStore}>
       <Router>
         {/* <Header CartItem={CartItem} /> */}
         <Routes>
@@ -102,6 +105,7 @@ function App() {
         </Routes>
         {/* <Footer /> */}
       </Router>
+      </PersistGate>
       </Provider>
     </div>
   )

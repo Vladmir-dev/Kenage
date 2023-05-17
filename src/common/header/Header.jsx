@@ -6,11 +6,11 @@ import Navbar from "./Navbar"
 import '@fortawesome/fontawesome-free/css/all.css'
 
 
-const Header = ({ CartItem }) => {
+const Header = () => {
   return (
     <div className="">
       <Head />
-      <Search CartItem={CartItem} />
+      <Search  />
       <Navbar />
     </div>
   )

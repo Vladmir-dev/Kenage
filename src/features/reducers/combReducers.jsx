@@ -1,7 +1,7 @@
 // import addItem from "./addItem";
 import { combineReducers } from "redux";
 import authReducer from "./authSlice"
-import cartReducer from "./cart"
+import cartReducer from "./cartSlice"
 import storeReducer from './shop'
 import productsReducer from './productsSlice'
 import searchReducer from './searchSlice'

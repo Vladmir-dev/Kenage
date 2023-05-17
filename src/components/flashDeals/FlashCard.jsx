@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css"
 import '@fortawesome/fontawesome-free/css/all.css'
 import { useSelector,useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { fetch_flash_deals } from "../../features/actions"
+import { fetch_flash_deals, add_to_cart } from "../../features/actions"
 
 
 const SampleNextArrow = (props) => {
@@ -28,6 +28,7 @@ const SamplePrevArrow = (props) => {
     </div>
   )
 }
+
 const FlashCard = ({ productItems, addToCart }) => {
   const dispatch = useDispatch()
 
@@ -108,8 +109,8 @@ const FlashCard = ({ productItems, addToCart }) => {
                   <div className='price'>
                     <h4 style={{color:'#FF5722'}}>${productItems.price}.00 </h4>
                     <button onClick={() =>
-                      AddToCart(productItems) 
-                      // addToCart(productItems)
+                      // AddToCart(productItems) 
+                      dispatch(add_to_cart(productItems))
                       }>
                       <i style={{color:'#FF5722'}} className='fa fa-plus'></i>
                     </button>

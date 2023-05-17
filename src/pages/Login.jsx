@@ -5,14 +5,17 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../features/actions'
 import { useNavigate } from "react-router-dom"
+// import { useHistory} from 'react-router-dom'
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
     let navigate = useNavigate()
+    // const history = useHistory()
     const isLoading = useSelector((state) => state.users.isLoading)
     const token = useSelector((state) => state.users.token)
+  
     // console.log("token ===>",token)
     // console.log("isLoading", isLoading)
     // console.log("email", email)
@@ -29,9 +32,12 @@ const Login = () => {
           const data = JSON.stringify({ email, password });
         //   console.log("data===>",data)
           dispatch(login(data));
-          if(token !== null){
-            navigate("/")
-          }
+          console.log("begining....")
+          // if(token){
+          //   // console.log("token", token)
+          //   // history.push("/")
+            
+          // }
         } else {
         //   Alert.alert("Info", "Please provide your credentials to sign in.", [
         //     {

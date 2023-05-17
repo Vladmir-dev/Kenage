@@ -59,7 +59,7 @@ export const login = createAsyncThunk(
         Config
       );
       //  navigate("/")
-      console.log("response =====>", data)
+      console.log("response =====>", data.token)
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -72,6 +72,33 @@ export const login = createAsyncThunk(
   }
 );
 
+export const get_user = createAsyncThunk(
+  "auth/gat_user",
+  async (token, { getState, rejectWithValue, dispatch }) => {
+    console.log("token ===>", token)
+    // console.log("login details ===>", kenageApi)
+    try {
+      console.log("login details ===>", token.token)
+      // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
+      const  {data}  = await axios.get(
+        "https://kenagecollapi.onrender.com​/api/auth/me",
+        {
+          headers: { Authorization: `Bearer ${token.token}` }
+        }
+      );
+      //  navigate("/")
+      console.log("user data ==>", data)
+      return data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        // dispatch(setError("Incorrect credentials"));
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.response.data);
+      }
+    }
+  }
+);
 
 export const signup = createAsyncThunk(
     "auth/signup",
@@ -903,6 +930,64 @@ export const signup = createAsyncThunk(
         // console.log("my datattatat from men' s ==>", data);
   
         return data;
+      } catch (error) {
+        if (error.response && error.response.data.message) {
+          return rejectWithValue(error.response.data.message);
+        } else {
+          return rejectWithValue(error.response.data);
+        }
+      }
+    }
+  );
+
+
+  export const add_to_cart = createAsyncThunk(
+    "cart/add_to_cart",
+    async (product, { getState, rejectWithValue }) => {
+      console.log("product ==>",product)
+     try{
+
+        // console.log(token);
+        // let response = await Axios.post(
+        //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
+        //   bodyContent,
+        //   headersList
+        // );
+        // let data = await response.data
+        // let data = response.data.swaps.sort((a, b) => {
+        //   new Date(a.date) - new Date(b.date);
+        // });
+        // console.log("my datattatat from men' s ==>", data);
+        return product;
+      } catch (error) {
+        if (error.response && error.response.data.message) {
+          return rejectWithValue(error.response.data.message);
+        } else {
+          return rejectWithValue(error.response.data);
+        }
+      }
+    }
+  );
+
+
+  export const decrease_qty = createAsyncThunk(
+    "cart/decrease_qty",
+    async (product, { getState, rejectWithValue }) => {
+      console.log("product ==>",product)
+     try{
+
+        // console.log(token);
+        // let response = await Axios.post(
+        //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
+        //   bodyContent,
+        //   headersList
+        // );
+        // let data = await response.data
+        // let data = response.data.swaps.sort((a, b) => {
+        //   new Date(a.date) - new Date(b.date);
+        // });
+        // console.log("my datattatat from men' s ==>", data);
+        return product;
       } catch (error) {
         if (error.response && error.response.data.message) {
           return rejectWithValue(error.response.data.message);

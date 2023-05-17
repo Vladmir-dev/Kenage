@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, signup, otp } from "../actions";
+import { login, signup, otp,get_user } from "../actions";
 
 const authSlice = createSlice({
     name: 'auth',
@@ -51,8 +51,11 @@ const authSlice = createSlice({
     })
 
   builder.addCase(login.fulfilled, (state, action) => {
+    console.log("login token", action.payload)
     state.isLoading = false;
     state.token = action.payload
+    console.log("token",state.token)
+    window.location.href = "/";
   })
 
   builder.addCase(login.rejected, (state,action) => {
@@ -92,8 +95,28 @@ const authSlice = createSlice({
     state.error = action.payload
   })
 
+  //user
+builder.addCase(get_user.pending, (state) => {
+  state.isLoading = true;
+  state.error = null;
+})
+
+builder.addCase(get_user.fulfilled, (state, action) => {
+  console.log("slice user =>", action.payload)
+  state.isLoading = false;
+  state.currentUser = action.payload;
+})
+
+builder.addCase(get_user.rejected, (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload
+})
+
   }
 })
+
+
+
 
 
 // export const {

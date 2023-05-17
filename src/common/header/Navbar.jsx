@@ -20,7 +20,8 @@ const Navbar = () => {
             </h4>
           </div> */}
 
-          <div className='navlink'>
+          <div className='navlink flex justify-between w-full items-center'>
+
             <ul className={MobileMenu ? "nav-links-mobile" : "link f_flex capitalize"} onClick={() => setMobileMenu(false)}>
               {/*<ul className='link f_flex uppercase {MobileMenu ? "nav-links-MobileMenu" : "nav-links"} onClick={() => setMobileMenu(false)}'>*/}
               <li>
@@ -67,6 +68,15 @@ const Navbar = () => {
             </div>
               </li>
             </ul>
+            <div className="hidden md:block">
+              <Link to="/signup">
+              <button className="bg-[#FF5722] p-2 px-4 hover:text-[#FF5722] hover:bg-white hover:border-solid hover:-border-[2px] duration-500 text-white rounded-md font-bold m-4">Sign up</button>
+              </Link>
+              <Link to="/login">
+              <button className="bg-[#FF5722] p-2 px-4 hover:text-[#FF5722] hover:bg-white hover:border-solid hover:-border-[2px] duration-500 text-white rounded-md font-bold m-4">login</button>
+              </Link>
+              
+            </div>
 
             <button className='md:hidden' onClick={() => setMobileMenu(!MobileMenu)}>
               {MobileMenu ? <i className='fas fa-times close home-btn'></i> : <i className='fas fa-bars open'></i>}

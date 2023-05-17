@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { fetch_men_clothes, fetch_men_shoes, fetch_women_clothes, fetch_women_shoes,fetch_boys_clothes, fetch_boys_shoes, fetch_girls_clothes, fetch_girls_shoes, fetch_results  } from '../../features/actions'
 import { useNavigate } from "react-router-dom"
 
-const Search = ({ CartItem }) => {
+const Search = () => {
   // fixed Header
   // window.addEventListener("scroll", function () {
   //   const search = document.querySelector(".search")
@@ -23,8 +23,10 @@ const Search = ({ CartItem }) => {
   const boy_shoe = useSelector((state) => state.products.boy_shoes)
   const girl_cloth = useSelector((state) => state.products.girl_clothes)
   const girl_shoe = useSelector((state) => state.products.girl_shoes)
+  const cart = useSelector((state) => state.cart.cartItems)
+  // const token = useSelector((state) => state.users.token)
 
-  //  console.log("men's clothes ==>", men_cloth)
+   console.log("token", token)
   // console.log("men's shoes ==>", men_shoe)
   // console.log("women's clothes ==>", women_cloth)
   // console.log("women's shoes ==>", women_shoe)
@@ -93,7 +95,7 @@ const Search = ({ CartItem }) => {
             <div className='cart'>
               <Link to='/cart'>
                 <i className='fa fa-shopping-bag md:p-4 p-2 bg-[#f6f9fc] rounded-full'></i>
-                <span className="px-2 md:py-[2px] rounded-full md:text-[10px] text-white" style={{background:'#FF5722'}}>{CartItem.length === 0 ? "" : CartItem.length}</span>
+                <span className="px-2 md:py-[2px] rounded-full md:text-[10px] text-white" style={{background:'#FF5722'}}>{cart.length === 0 ? "" : cart.length}</span>
               </Link>
             </div>
           </div>
