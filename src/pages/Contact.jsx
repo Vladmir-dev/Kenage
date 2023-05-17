@@ -33,11 +33,11 @@ const Contact = ({CartItem}) => {
         <div className='w-full bg-[#f6f9fc] p-4 m-1 flex font-serif justify-center items-center box-border flex-col'>
            <h2 className='text-[47px] text-orange-500 font-bold'>About Us</h2>
             <div className='flex mt-[20px] gap-8 w-[80%] justify-center items-center'>
-              <div className='w-[700px] h-[400px] bg-white shadow-md'>
+              <div className='w-[700px] h-[400px] bg-white shadow-md '>
                   <img src={child} alt="about" className='w-full h-full rounded-md cover'/>
               </div>
-              <div className=' bg-white flex flex-wrap shadow-md rounded-md'>
-                <p className=' w-[700px] h-[400px] flex-wrap text-[25px] text-start flex p-4'>
+              <div className=' bg-white flex flex-wrap shadow-md rounded-md w-[100%]'>
+                <p className=' w-[700px] h-[400px] flex-wrap md:text-[25px] text-start flex p-2'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium

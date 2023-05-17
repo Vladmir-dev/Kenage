@@ -11,6 +11,13 @@ const authSlice = createSlice({
     message:null
   },
   reducers: {
+
+    logout: (state) => {
+      state.currentUser = null;
+      state.error = false;
+      state.token = null;
+     
+    },
     // signUpStart(state) {
     //   state.isLoading = true;
     //   state.error = null;
@@ -62,6 +69,22 @@ const authSlice = createSlice({
     state.isLoading = false;
     state.error = action.payload
   })
+
+//   //logout
+//   builder.addCase(logout.pending, (state) => {
+//     state.isLoading = true;
+//     state.error = null;
+//   })
+
+// builder.addCase(logout.fulfilled, (state, action) => {
+//   state.isLoading = false;
+//   state.token = initialState.token;
+// })
+
+// builder.addCase(logout.rejected, (state,action) => {
+//   state.isLoading = false;
+//   state.error = action.payload
+// })
 
   //sign up
   builder.addCase(signup.pending, (state) => {
@@ -119,14 +142,6 @@ builder.addCase(get_user.rejected, (state, action) => {
 
 
 
-// export const {
-//     signUpStart,
-//     signUpSuccess,
-//     signUpFailure,
-//     loginStart,
-//     loginSuccess,
-//     loginFailure,
-//     logout,
-//   } = authSlice.actions;
+ export const { logout  } = authSlice.actions;
 
   export default authSlice.reducer

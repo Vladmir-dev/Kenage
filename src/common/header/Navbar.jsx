@@ -1,9 +1,11 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import '@fortawesome/fontawesome-free/css/all.css'
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { logout } from "../../features/reducers/authSlice"
 
 const Navbar = () => {
+  const dispatch = useDispatch()
   // Toogle Menu
   const [MobileMenu, setMobileMenu] = useState(false)
 
@@ -69,7 +71,7 @@ const Navbar = () => {
               </li>
             </ul>
             {token ? (
-              <button className="bg-[#FF5722] p-2 px-4 hover:text-[#FF5722] hover:bg-white hover:border-solid hover:-border-[2px] duration-500 text-white rounded-md font-bold m-4">Log Out</button>
+              <button onClick={() => dispatch(logout())} className="bg-[#FF5722] p-2 px-4 hover:text-[#FF5722] hover:bg-white hover:border-solid hover:-border-[2px] duration-500 text-white rounded-md font-bold m-4">Log Out</button>
             ):(
                <div className="hidden md:block">
               <Link to="/signup">

@@ -129,9 +129,14 @@ export const signup = createAsyncThunk(
   
   export const logout = async () => {
     try {
-      await axios.post(`${API_URL}/auth/logout`);
+      return "Logout succesfull"
     } catch (error) {
-      throw error.response.data.message;
+      if (error.response && error.response.data.message) {
+        // dispatch(setError("Incorrect credentials"));
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.response.data);
+      }
     }
   };
 

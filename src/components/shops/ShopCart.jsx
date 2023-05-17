@@ -45,12 +45,14 @@
 //export default ShopCart
 
 import React, { useState } from "react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { add_to_cart } from "../../features/actions"
 
 const ShopCart = ({ shopItems, addToCart }) => {
   const user = useSelector((state) => state.users.currentUser)
   let navigate = useNavigate()
+  const dispatch = useDispatch()
   const [count, setCount] = useState(0)
   const increment = () => {
     setCount(count + 1)
@@ -93,7 +95,7 @@ const ShopCart = ({ shopItems, addToCart }) => {
                   {/* step : 3  
                      if hami le button ma click garryo bahne 
                     */}
-                  <button onClick={() => addToCart(shopItems)}>
+                  <button onClick={() => dispatch(add_to_cart(shopItems))}>
                     <i style={{color:'#FF5722'}} className='fa fa-plus'></i>
                   </button>
                 </div>
