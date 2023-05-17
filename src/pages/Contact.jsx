@@ -37,20 +37,47 @@ const Contact = ({CartItem}) => {
                   <img src={child} alt="about" className='w-full h-full rounded-md cover'/>
               </div>
               <div className=' bg-white flex flex-wrap shadow-md rounded-md'>
-                <p className=' w-[700px] h-[400px] flex-wrap text-start flex p-4'>
-                  k1l32lk wkk wkkwkwl wlwllw oo21 i02op wjpqjw pjPNQW ONQOI HQPIH PIJQPOJ
-                  
-                  PIJWQPIW IWQ PWJPIW JPWJQPJWQP JWQPWJQPJ QWP JWPJ WPJWPW JQP WJQPWJP QWJPJ WPJ WPJQWP
+                <p className=' w-[700px] h-[400px] flex-wrap text-[25px] text-start flex p-4'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
+tenetur error, harum nesciunt ipsum debitis quas aliquid.
                 </p>
               
               </div>
             </div>
 
             <div className='md:w-[77%] shadow-md rounded-md p-4 mt-[50px] bg-white flex justify-center items-center'>
-            {/* <form onSubmit={handleSubmit}>
-          <input type='file' onChange={(e) => setImage(e.target.files[0])} accept='image/*'/>
-          <button type='submit' className='bg-red-500 p-4'>Upload</button>
-        </form> */}
+            <div className="md:mt-[100px] mt-[50px] flex gap-5 flex-col justify-center p-4 items-center md:mb-[100px]">
+        <div className="flex gap-5 justify-center items-center">
+          <div>
+            <input placeholder="Name" className="md:w-[500px] w-[180px] placeholder-black placeholder:text-[20px] :h-[40px] rounded-md border-solid border-black border-[1px] p-2 text-black  bg-[#f6f9fc]" type="text"/>
+          </div>
+          <div>
+            <input placeholder="Email" className="md:w-[500px] w-[180px] placeholder-black placeholder:text-[20px] :h-[40px] rounded-md border-solid border-black border-[1px] p-2 text-black  bg-[#f6f9fc]" type="text"/>  
+          </div>
+        </div>
+
+        <div className="flex gap-5 justify-center items-center">
+          <div>
+            <input placeholder="Phone" className="md:w-[500px] w-[180px] placeholder-black placeholder:text-[20px] :h-[40px] rounded-md border-solid border-black border-[1px] p-2 text-black  bg-[#f6f9fc]" type="text"/>
+          </div>
+          <div>
+            <input placeholder="YY/MM/DD" className="md:w-[500px] w-[180px] placeholder-black placeholder:text-[20px] :h-[40px] rounded-md border-solid border-black border-[1px] p-2 text-black  bg-[#f6f9fc]" type="text"/>  
+          </div>
+        </div>
+
+        <div className="flex justify-center items-center">
+           <textarea className="md:w-[1020px] w-[380px] md:h-[200px] h-[200px] border-solid border-black border-[1px] align-top text-white bg-[#f6f9fc] laeding-normal p-[10px]">New Message</textarea>
+        </div>
+        <div className="flex justify-center items-center md:mt-[20px]">
+          <button className="bg-white p-4 rounded-xl md:text-[25px] border-solid border-[#FF5722] hover:bg-[#FF5722] hover:text-white duration-500 border-[2px]  font-bold text-[#FF5722]">Submit</button>
+        </div>
+      </div>
+
             </div>
             <Wrapper />
         </div>

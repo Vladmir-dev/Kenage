@@ -1,14 +1,14 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import '@fortawesome/fontawesome-free/css/all.css'
-
+import { useSelector } from "react-redux"
 
 const Navbar = () => {
   // Toogle Menu
   const [MobileMenu, setMobileMenu] = useState(false)
 
   const [show, setShow] = useState(false)
-
+  const token = useSelector((state) => state.users.token)
   return (
     <>
       <header className='header shadow-md bg-white '>
@@ -68,7 +68,10 @@ const Navbar = () => {
             </div>
               </li>
             </ul>
-            <div className="hidden md:block">
+            {token ? (
+              <button className="bg-[#FF5722] p-2 px-4 hover:text-[#FF5722] hover:bg-white hover:border-solid hover:-border-[2px] duration-500 text-white rounded-md font-bold m-4">Log Out</button>
+            ):(
+               <div className="hidden md:block">
               <Link to="/signup">
               <button className="bg-[#FF5722] p-2 px-4 hover:text-[#FF5722] hover:bg-white hover:border-solid hover:-border-[2px] duration-500 text-white rounded-md font-bold m-4">Sign up</button>
               </Link>
@@ -77,6 +80,8 @@ const Navbar = () => {
               </Link>
               
             </div>
+            ) }
+           
 
             <button className='md:hidden' onClick={() => setMobileMenu(!MobileMenu)}>
               {MobileMenu ? <i className='fas fa-times close home-btn'></i> : <i className='fas fa-bars open'></i>}
