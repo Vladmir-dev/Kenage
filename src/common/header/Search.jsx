@@ -3,7 +3,7 @@ import logo from "../../components/assets/images/kenage.png"
 import { Link } from "react-router-dom"
 import '@fortawesome/fontawesome-free/css/all.css'
 import { useSelector, useDispatch } from "react-redux"
-import { fetch_men_clothes,top_categories, fetch_men_shoes, fetch_women_clothes, fetch_women_shoes,fetch_boys_clothes, fetch_boys_shoes, fetch_girls_clothes, fetch_girls_shoes, fetch_results  } from '../../features/actions'
+import { fetch_men_clothes,top_categories,new_arrivals ,fetch_men_shoes, fetch_women_clothes, fetch_women_shoes,fetch_boys_clothes, fetch_boys_shoes, fetch_girls_clothes, fetch_girls_shoes, fetch_results  } from '../../features/actions'
 import { useNavigate } from "react-router-dom"
 
 const Search = () => {
@@ -25,10 +25,11 @@ const Search = () => {
   const girl_shoe = useSelector((state) => state.products.girl_shoes)
   const cart = useSelector((state) => state.cart.cartItems)
   const category = useSelector((state) => state.products.topCategories)
+  const arrivals = useSelector((state) => state.products.newArrivals)
   // const token = useSelector((state) => state.users.token)
 
    console.log("token", token)
-  console.log("top category ==>", category)
+  console.log("top arrivals ==>", arrivals)
   // console.log("women's clothes ==>", women_cloth)
   // console.log("women's shoes ==>", women_shoe)
   // console.log("prod dndn clothes ==>", products)
@@ -42,6 +43,7 @@ const Search = () => {
     dispatch(fetch_girls_clothes(token));
     dispatch(fetch_girls_shoes(token));
     dispatch(top_categories(token));
+    dispatch(new_arrivals(token))
   },[])
 
   const [query, setQuery] = useState("")

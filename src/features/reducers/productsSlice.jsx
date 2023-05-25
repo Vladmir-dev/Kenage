@@ -9,7 +9,8 @@ import {
      fetch_boys_shoes,
      fetch_girls_clothes,
      fetch_girls_shoes,
-     top_categories
+     top_categories,
+     new_arrivals
     } from "../actions";
 
 const initialState = {
@@ -55,6 +56,24 @@ const productsSlice = createSlice({
         } )
 
 
+        //new arrivals
+        builder.addCase(new_arrivals.pending, (state) => {
+            state.is_loading = true;
+            state.error = false;
+        })
+
+        builder.addCase(new_arrivals.fulfilled, (state, action) => {
+            // console.log("payload ==>", action.payload)
+            state.is_loading = false;
+            state.newArrivals = action.payload
+        })
+
+        builder.addCase(new_arrivals.rejected, (state, action) => {
+            state.is_loading = false;
+            state.error = action.payload;
+        } )
+
+
         //top categories
         builder.addCase(top_categories.pending, (state) => {
             state.is_loading = true;
@@ -71,7 +90,7 @@ const productsSlice = createSlice({
             state.is_loading = false;
             state.error = action.payload;
         } )
-        
+
 
         //men's clothes
         builder.addCase(fetch_men_clothes.pending, (state) => {

@@ -1,8 +1,10 @@
 import React from "react"
 import Cart from "./Cart"
 import "./style.css"
+import { useSelector } from "react-redux"
 
 const NewArrivals = () => {
+  
   return (
     <>
       <section className='NewArrivals background'>
