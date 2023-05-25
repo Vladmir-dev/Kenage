@@ -10,7 +10,8 @@ import {
      fetch_girls_clothes,
      fetch_girls_shoes,
      top_categories,
-     new_arrivals
+     new_arrivals,
+     discounted
     } from "../actions";
 
 const initialState = {
@@ -51,6 +52,23 @@ const productsSlice = createSlice({
         })
 
         builder.addCase(fetch_flash_deals.rejected, (state, action) => {
+            state.is_loading = false;
+            state.error = action.payload;
+        } )
+
+        //discounted
+        builder.addCase(discounted.pending, (state) => {
+            state.is_loading = true;
+            state.error = false;
+        })
+
+        builder.addCase(discounted.fulfilled, (state, action) => {
+            // console.log("payload ==>", action.payload)
+            state.is_loading = false;
+            state.discounts = action.payload
+        })
+
+        builder.addCase(discounted.rejected, (state, action) => {
             state.is_loading = false;
             state.error = action.payload;
         } )

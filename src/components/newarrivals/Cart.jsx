@@ -32,7 +32,7 @@ const Cart = () => {
     <>
       
       <Slider {...settings}>
-        {arrivals.map((val, index) => {
+        {arrivals && arrivals.map((val, index) => {
           return (
             <div className='box' key={index}>
               <div className='img m-[10px] w-[400px] h-[400px]'>

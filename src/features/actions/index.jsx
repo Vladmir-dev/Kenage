@@ -208,6 +208,29 @@ export const new_arrivals = createAsyncThunk(
   }
 );
 
+export const discounted = createAsyncThunk(
+  "products/discounted",
+  async (token, { getState, rejectWithValue }) => {
+    console.log("The fetching data", token);
+
+    try {
+      const response = await axios.get(
+        "https://kenagecollapi.onrender.com/api/products/discounted",
+        Config
+      );
+      console.log("Top Categories", response.data);
+
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.response.data);
+      }
+    }
+  }
+);
+
 export const fetch_men_clothes = createAsyncThunk(
   "products/fetch_men_clothes",
   async (token, { getState, rejectWithValue }) => {

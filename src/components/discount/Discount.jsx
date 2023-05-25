@@ -1,12 +1,15 @@
 import React from "react"
 import Dcard from "./Dcard"
 import '@fortawesome/fontawesome-free/css/all.css'
-
+import { useSelector } from "react-redux"
 
 const Discount = () => {
+  const discounts = useSelector((state) => state.products.discounts);
+
   return (
-    <>
-      <section className='Discount background NewArrivals'>
+    <>{
+      discounts.length <= 2 ?(<div></div>):(
+        <section className='Discount background NewArrivals'>
         <div className='container'>
           <div className='heading d_flex'>
             <div className='heading-left row  f_flex'>
@@ -21,6 +24,9 @@ const Discount = () => {
           <Dcard />
         </div>
       </section>
+      )
+    }
+      
     </>
   )
 }

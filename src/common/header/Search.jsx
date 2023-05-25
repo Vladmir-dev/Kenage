@@ -3,7 +3,7 @@ import logo from "../../components/assets/images/kenage.png"
 import { Link } from "react-router-dom"
 import '@fortawesome/fontawesome-free/css/all.css'
 import { useSelector, useDispatch } from "react-redux"
-import { fetch_men_clothes,top_categories,new_arrivals ,fetch_men_shoes, fetch_women_clothes, fetch_women_shoes,fetch_boys_clothes, fetch_boys_shoes, fetch_girls_clothes, fetch_girls_shoes, fetch_results  } from '../../features/actions'
+import { fetch_men_clothes,top_categories,new_arrivals,discounted ,fetch_men_shoes, fetch_women_clothes, fetch_women_shoes,fetch_boys_clothes, fetch_boys_shoes, fetch_girls_clothes, fetch_girls_shoes, fetch_results  } from '../../features/actions'
 import { useNavigate } from "react-router-dom"
 
 const Search = () => {
@@ -26,6 +26,7 @@ const Search = () => {
   const cart = useSelector((state) => state.cart.cartItems)
   const category = useSelector((state) => state.products.topCategories)
   const arrivals = useSelector((state) => state.products.newArrivals)
+  const discounts = useSelector((state) => state.products.discounts)
   // const token = useSelector((state) => state.users.token)
 
    console.log("token", token)
@@ -43,7 +44,8 @@ const Search = () => {
     dispatch(fetch_girls_clothes(token));
     dispatch(fetch_girls_shoes(token));
     dispatch(top_categories(token));
-    dispatch(new_arrivals(token))
+    dispatch(new_arrivals(token));
+    dispatch(discounted(token));
   },[])
 
   const [query, setQuery] = useState("")
@@ -55,7 +57,7 @@ const Search = () => {
     setQuery(query);
 
     // Combine all arrays into a single array
-    const allProducts = [...men_cloth, ...men_shoe, ...women_cloth, ...women_shoe, ...boy_cloth, ...boy_shoe,...girl_cloth, ...girl_shoe,...category];
+    const allProducts = [...men_cloth, ...men_shoe, ...women_cloth, ...women_shoe, ...boy_cloth, ...boy_shoe,...girl_cloth, ...girl_shoe,...category, ...discounted];
     console.log("all products", allProducts)
     // Perform search in the combined array
     const results = allProducts.filter((product) => {
