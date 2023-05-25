@@ -74,7 +74,7 @@ const ShopCart = ({ shopItems, addToCart }) => {
         return (
           <div className="box" key={index}>
             <div className="product mtop">
-              <div className="img w-[200px] h-[200px]">
+              <div className="img md:w-[200px] md:h-[200px]">
                 <span style={{ background: "#FF5722" }} className="discount">
                   {discount.percentage}% Off
                 </span>
