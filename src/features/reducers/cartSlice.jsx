@@ -58,13 +58,13 @@ const cartSlice = createSlice({
         // console.log("payload ==>", action.payload)
         state.is_loading = false;
         const product = action.payload;
-        const productExists = state.cartItems.find((item) => item.id === product.id);
+        const productExists = state.cartItems.find((item) => item._id === product._id);
 
         if (productExists && productExists.qty === 1) {
-            state.cartItems = state.cartItems.filter((item) => item.id !== product.id);
+            state.cartItems = state.cartItems.filter((item) => item._id !== product._id);
           } else if (productExists) {
             state.cartItems = state.cartItems.map((item) =>
-              item.id === product.id ? { ...productExists, qty: productExists.qty - 1 } : item
+              item._id === product._id ? { ...productExists, qty: productExists.qty - 1 } : item
             );
         }
     })

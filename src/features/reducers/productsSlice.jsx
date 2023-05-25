@@ -8,7 +8,8 @@ import {
      fetch_boys_clothes,
      fetch_boys_shoes,
      fetch_girls_clothes,
-     fetch_girls_shoes
+     fetch_girls_shoes,
+     top_categories
     } from "../actions";
 
 const initialState = {
@@ -24,7 +25,9 @@ const initialState = {
     boy_clothes:[],
     girl_clothes:[],
     newArrivals:[],
-    flashDeals:[]
+    flashDeals:[],
+    topCategories:[],
+    discounts:[]
 }
 
 const productsSlice = createSlice({
@@ -50,6 +53,25 @@ const productsSlice = createSlice({
             state.is_loading = false;
             state.error = action.payload;
         } )
+
+
+        //top categories
+        builder.addCase(top_categories.pending, (state) => {
+            state.is_loading = true;
+            state.error = false;
+        })
+
+        builder.addCase(top_categories.fulfilled, (state, action) => {
+            // console.log("payload ==>", action.payload)
+            state.is_loading = false;
+            state.topCategories = action.payload
+        })
+
+        builder.addCase(top_categories.rejected, (state, action) => {
+            state.is_loading = false;
+            state.error = action.payload;
+        } )
+        
 
         //men's clothes
         builder.addCase(fetch_men_clothes.pending, (state) => {

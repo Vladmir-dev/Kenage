@@ -145,69 +145,10 @@ export const signup = createAsyncThunk(
     "products/fetch_flash_deals",
     async (token, { getState, rejectWithValue }) => {
       console.log("The fetching data",token)
-      // let bodyContent = {
-      //   api_key: token,
-      // };
+
       try {
       const response = await axios.get('https://kenagecollapi.onrender.com/api/products/flash-deals', Config)
       console.log("response yeahh", response.data)
-
-      //  const data = [
-      //     {
-      //       id: 1,
-      //       discount: 50,
-      //       cover: "./images/flash/flash-1.png",
-      //       name: "Shoes",
-      //       price: 100,
-      //     },
-      //     {
-      //       id: 2,
-      //       discount: 40,
-      //       cover: "./images/flash/flash-2.png",
-      //       name: "Watch",
-      //       price: 20,
-      //     },
-      //     {
-      //       id: 3,
-      //       discount: 40,
-      //       cover: "./images/flash/flash-3.png",
-      //       name: "Smart Mobile Black",
-      //       price: 200,
-      //     },
-      //     {
-      //       id: 4,
-      //       discount: 40,
-      //       cover: "./images/flash/flash-4.png",
-      //       name: "Smart Watch Black",
-      //       price: 50,
-      //     },
-      //     {
-      //       id: 5,
-      //       discount: 50,
-      //       cover: "./images/flash/flash-1.png",
-      //       name: "Shoes",
-      //       price: 100,
-      //     },
-      //     {
-      //       id: 6,
-      //       discount: 50,
-      //       cover: "./images/flash/flash-3.png",
-      //       name: "Shoes",
-      //       price: 100,
-      //     },
-      //   ]
-      
-        // console.log(token);
-        // let response = await Axios.post(
-        //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
-        //   bodyContent,
-        //   headersList
-        // );
-        // let data = await response.data
-        // let data = response.data.swaps.sort((a, b) => {
-        //   new Date(a.date) - new Date(b.date);
-        // });
-        // console.log("my datattatat===>", data);
   
         return response.data;
       } catch (error) {
@@ -220,6 +161,27 @@ export const signup = createAsyncThunk(
     }
   );
 
+
+
+  export const top_categories = createAsyncThunk(
+    "products/top_categories",
+    async (token, { getState, rejectWithValue }) => {
+      console.log("The fetching data",token)
+
+      try {
+      const response = await axios.get('https://kenagecollapi.onrender.com/api/products/top-category', Config)
+      console.log("Top Categories", response.data)
+  
+        return response.data;
+      } catch (error) {
+        if (error.response && error.response.data.message) {
+          return rejectWithValue(error.response.data.message);
+        } else {
+          return rejectWithValue(error.response.data);
+        }
+      }
+    }
+  );
 
   export const fetch_men_clothes = createAsyncThunk(
     "products/fetch_men_clothes",

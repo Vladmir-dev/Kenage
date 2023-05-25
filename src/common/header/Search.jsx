@@ -3,7 +3,7 @@ import logo from "../../components/assets/images/kenage.png"
 import { Link } from "react-router-dom"
 import '@fortawesome/fontawesome-free/css/all.css'
 import { useSelector, useDispatch } from "react-redux"
-import { fetch_men_clothes, fetch_men_shoes, fetch_women_clothes, fetch_women_shoes,fetch_boys_clothes, fetch_boys_shoes, fetch_girls_clothes, fetch_girls_shoes, fetch_results  } from '../../features/actions'
+import { fetch_men_clothes,top_categories, fetch_men_shoes, fetch_women_clothes, fetch_women_shoes,fetch_boys_clothes, fetch_boys_shoes, fetch_girls_clothes, fetch_girls_shoes, fetch_results  } from '../../features/actions'
 import { useNavigate } from "react-router-dom"
 
 const Search = () => {
@@ -24,10 +24,11 @@ const Search = () => {
   const girl_cloth = useSelector((state) => state.products.girl_clothes)
   const girl_shoe = useSelector((state) => state.products.girl_shoes)
   const cart = useSelector((state) => state.cart.cartItems)
+  const category = useSelector((state) => state.products.topCategories)
   // const token = useSelector((state) => state.users.token)
 
    console.log("token", token)
-  // console.log("men's shoes ==>", men_shoe)
+  console.log("top category ==>", category)
   // console.log("women's clothes ==>", women_cloth)
   // console.log("women's shoes ==>", women_shoe)
   // console.log("prod dndn clothes ==>", products)
@@ -36,10 +37,11 @@ const Search = () => {
     dispatch(fetch_men_shoes(token));
     dispatch(fetch_women_clothes(token));
     dispatch(fetch_women_shoes(token));
-    dispatch(fetch_boys_clothes(token))
-    dispatch(fetch_boys_shoes(token))
-    dispatch(fetch_girls_clothes(token))
-    dispatch(fetch_girls_shoes(token))
+    dispatch(fetch_boys_clothes(token));
+    dispatch(fetch_boys_shoes(token));
+    dispatch(fetch_girls_clothes(token));
+    dispatch(fetch_girls_shoes(token));
+    dispatch(top_categories(token));
   },[])
 
   const [query, setQuery] = useState("")
@@ -51,8 +53,8 @@ const Search = () => {
     setQuery(query);
 
     // Combine all arrays into a single array
-    const allProducts = [...men_cloth, ...men_shoe, ...women_cloth, ...women_shoe, ...boy_cloth, ...boy_shoe,...girl_cloth, ...girl_shoe];
-    console.log("all prod", allProducts)
+    const allProducts = [...men_cloth, ...men_shoe, ...women_cloth, ...women_shoe, ...boy_cloth, ...boy_shoe,...girl_cloth, ...girl_shoe,...category];
+    console.log("all products", allProducts)
     // Perform search in the combined array
     const results = allProducts.filter((product) => {
       // Customize the conditions based on your product data structure
