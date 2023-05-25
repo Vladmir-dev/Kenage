@@ -27,14 +27,15 @@ const cartSlice = createSlice({
         })
 
         builder.addCase(add_to_cart.fulfilled, (state, action) => {
-            // console.log("payload ==>", action.payload)
+            console.log("products in cart ==>", action.payload._id)
             state.is_loading = false;
             const product = action.payload;
-            const productExists = state.cartItems.find((item) => item.id === product.id);
+            console.log("product id", product._id)
+            const productExists = state.cartItems.find((item) => item._id === product._id);
 
             if (productExists) {
                 state.cartItems = state.cartItems.map((item) =>
-                  item.id === product.id ? { ...productExists, qty: productExists.qty + 1 } : item
+                  item._id === product._id ? { ...productExists, qty: productExists.qty + 1 } : item
                 );
               } else {
                 state.cartItems.push({ ...product, qty: 1 });
