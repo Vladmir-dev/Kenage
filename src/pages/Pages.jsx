@@ -20,7 +20,7 @@ const Pages = ({ productItems, addToCart, CartItem, shopItems }) => {
       <NewArrivals />
       <Discount />
       <Shop shopItems={shopItems} addToCart={addToCart} />
-      <Annocument />
+      {/* <Annocument /> */}
       <Wrapper />
       <Footer />
     </div>

@@ -4,10 +4,12 @@ import "./style.css"
 import { useSelector } from "react-redux"
 
 const NewArrivals = () => {
-  
+  const arrivals = useSelector((state) => state.products.newArrivals)
+
   return (
-    <>
-      <section className='NewArrivals background'>
+    <div>
+       {arrivals && arrivals.length < 3? (<div></div>): (
+        <section className='NewArrivals background'>
         <div className='container'>
           <div className='heading d_flex'>
             <div className='heading-left row  f_flex'>
@@ -23,7 +25,9 @@ const NewArrivals = () => {
           <Cart />
         </div>
       </section>
-    </>
+       )}
+      
+    </div>
   )
 }
 

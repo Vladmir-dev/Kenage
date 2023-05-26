@@ -40,7 +40,7 @@ const Cart = () => {
                     <img
                       src={val.images[0]}
                       alt="top categories"
-                      className="cover w-full h-full"
+                      className="cover w-full h-full rounded-md"
                     />
                   )}
               </div>

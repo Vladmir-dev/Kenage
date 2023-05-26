@@ -10,17 +10,17 @@ import { useSelector } from "react-redux";
 const Dcard = () => {
   const discounts = useSelector((state) => state.products.discounts);
 
-  let length;
-  if (discounts.length < 4) {
-    length = 2;
-  } else {
-    length = 4;
-  }
+  // let length = 2;
+  // if (discounts && discounts.length < 4) {
+  //   length = 2;
+  // } else {
+  //   length = 4;
+  // }
 
   const settings = {
     dots: false,
     infinite: true,
-    slidesToShow: length,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     responsive: [
@@ -36,11 +36,11 @@ const Dcard = () => {
       },
     ],
   };
+
   return (
     <>
       <Slider {...settings}>
-        {discounts &&
-          discounts.map((value, index) => {
+        {discounts && discounts.map((value, index) => {
             return (
               <>
                 <div className="box product" key={index}>

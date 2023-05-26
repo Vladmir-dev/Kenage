@@ -184,7 +184,6 @@ export const top_categories = createAsyncThunk(
   }
 );
 
-
 export const new_arrivals = createAsyncThunk(
   "products/new_arrivals",
   async (token, { getState, rejectWithValue }) => {
@@ -231,6 +230,7 @@ export const discounted = createAsyncThunk(
   }
 );
 
+
 export const fetch_men_clothes = createAsyncThunk(
   "products/fetch_men_clothes",
   async (token, { getState, rejectWithValue }) => {
@@ -245,83 +245,7 @@ export const fetch_men_clothes = createAsyncThunk(
       );
       console.log("response yeahh", response.data);
 
-      // const data = [
-      //   {
-      //     id: 7,
-      //     cover: "./images/shops/shops-1.png",
-      //     name: "Mapple Earphones",
-      //     price: "180",
-      //     discount: "25",
-      //   },
-      //   {
-      //     id: 8,
-      //     cover: "./images/shops/shops-2.png",
-      //     name: "Vivo android one",
-      //     price: "120",
-      //     discount: "10",
-      //   },
-      //   {
-      //     id: 9,
-      //     cover: "./images/shops/shops-3.png",
-      //     name: "Sony Light",
-      //     price: "20",
-      //     discount: "50 ",
-      //   },
-      //   {
-      //     id: 10,
-      //     cover: "./images/shops/shops-4.png",
-      //     name: "Iphone",
-      //     price: "999",
-      //     discount: "10 ",
-      //   },
-      //   {
-      //     id: 11,
-      //     cover: "./images/shops/shops-5.png",
-      //     name: "Ceats wireless earphone",
-      //     price: "80",
-      //     discount: "20 ",
-      //   },
-      //   {
-      //     id: 12,
-      //     cover: "./images/shops/shops-7.png",
-      //     name: "Redimi Phone",
-      //     price: "400",
-      //     discount: "20 ",
-      //   },
-      //   {
-      //     id: 13,
-      //     cover: "./images/shops/shops-8.png",
-      //     name: "Xeats Bluetooth earphones",
-      //     price: "60",
-      //     discount: "5 ",
-      //   },
-      //   {
-      //     id: 14,
-      //     cover: "./images/shops/shops-9.png",
-      //     name: "Airpod",
-      //     price: "120",
-      //     discount: "10",
-      //   },
-      //   {
-      //     id: 15,
-      //     cover: "./images/shops/shops-10.png",
-      //     name: "Silver Cap",
-      //     price: "5",
-      //     discount: "2",
-      //   },
-      // ]
-      // console.log(token);
-      // let response = await Axios.post(
-      //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
-      //   bodyContent,
-      //   headersList
-      // );
-      // let data = await response.data
-      // let data = response.data.swaps.sort((a, b) => {
-      //   new Date(a.date) - new Date(b.date);
-      // });
-      // console.log("my datattatat from men' s ==>", data);
-
+      
       return response.data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -333,6 +257,7 @@ export const fetch_men_clothes = createAsyncThunk(
   }
 );
 
+
 export const fetch_men_shoes = createAsyncThunk(
   "products/fetch_men_shoes",
   async (token, { getState, rejectWithValue }) => {
@@ -340,67 +265,14 @@ export const fetch_men_shoes = createAsyncThunk(
     // let bodyContent = {
     //   api_key: token,
     // };
-    const response = await axios.get(
-      "https://kenagecollapi.onrender.com/api/products/women-clothes",
-      Config
-    );
-    console.log("men shoes yeahh", response.data);
+   
     try {
-      const data = [
-        {
-          id: 1,
-          discount: 50,
-          cover: "./images/flash/flash-1.png",
-          name: "Shoes",
-          price: 100,
-        },
-        {
-          id: 2,
-          discount: 40,
-          cover: "./images/flash/flash-2.png",
-          name: "Watch",
-          price: 20,
-        },
-        {
-          id: 3,
-          discount: 40,
-          cover: "./images/flash/flash-3.png",
-          name: "Smart Mobile Black",
-          price: 200,
-        },
-        {
-          id: 4,
-          discount: 40,
-          cover: "./images/flash/flash-4.png",
-          name: "Smart Watch Black",
-          price: 50,
-        },
-        {
-          id: 5,
-          discount: 50,
-          cover: "./images/flash/flash-1.png",
-          name: "Shoes",
-          price: 100,
-        },
-        {
-          id: 6,
-          discount: 50,
-          cover: "./images/flash/flash-3.png",
-          name: "Shoes",
-          price: 100,
-        },
-      ];
-      // console.log(token);
-      // let response = await Axios.post(
-      //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
-      //   bodyContent,
-      //   headersList
-      // );
-      // let data = await response.data
-      // let data = response.data.swaps.sort((a, b) => {
-      //   new Date(a.date) - new Date(b.date);
-      // });
-      // console.log("my datattatat from men' s ==>", data);
+      const response = await axios.get(
+        "https://kenagecollapi.onrender.com/api/products/men-shoes",
+        Config
+      );
+      console.log("men shoes yeahh", response.data);
+
 
       return response.data;
     } catch (error) {
@@ -417,92 +289,14 @@ export const fetch_women_clothes = createAsyncThunk(
   "products/fetch_women_clothes",
   async (token, { getState, rejectWithValue }) => {
     console.log("token", token);
-    // let bodyContent = {
-    //   api_key: token,
-    // };
+    
     try {
+
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/men-clothes",
+        "https://kenagecollapi.onrender.com/api/products/women-clothes",
         Config
       );
-      console.log("men shoes yeahh", response.data);
-
-      const data = [
-        {
-          id: 7,
-          cover: "./images/shops/shops-1.png",
-          name: "Mapple Earphones",
-          price: "180",
-          discount: "25",
-        },
-        {
-          id: 8,
-          cover: "./images/shops/shops-2.png",
-          name: "Vivo android one",
-          price: "120",
-          discount: "10",
-        },
-        {
-          id: 9,
-          cover: "./images/shops/shops-3.png",
-          name: "Sony Light",
-          price: "20",
-          discount: "50 ",
-        },
-        {
-          id: 10,
-          cover: "./images/shops/shops-4.png",
-          name: "Iphone",
-          price: "999",
-          discount: "10 ",
-        },
-        {
-          id: 11,
-          cover: "./images/shops/shops-5.png",
-          name: "Ceats wireless earphone",
-          price: "80",
-          discount: "20 ",
-        },
-        {
-          id: 12,
-          cover: "./images/shops/shops-7.png",
-          name: "Redimi Phone",
-          price: "400",
-          discount: "20 ",
-        },
-        {
-          id: 13,
-          cover: "./images/shops/shops-8.png",
-          name: "Xeats Bluetooth earphones",
-          price: "60",
-          discount: "5 ",
-        },
-        {
-          id: 14,
-          cover: "./images/shops/shops-9.png",
-          name: "Airpod",
-          price: "120",
-          discount: "10",
-        },
-        {
-          id: 15,
-          cover: "./images/shops/shops-10.png",
-          name: "Silver Cap",
-          price: "5",
-          discount: "2",
-        },
-      ];
-      // console.log(token);
-      // let response = await Axios.post(
-      //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
-      //   bodyContent,
-      //   headersList
-      // );
-      // let data = await response.data
-      // let data = response.data.swaps.sort((a, b) => {
-      //   new Date(a.date) - new Date(b.date);
-      // });
-      // console.log("my datattatat from men' s ==>", data);
+      // console.log("men shoes yeahh", response.data);
 
       return response.data;
     } catch (error) {
@@ -524,66 +318,10 @@ export const fetch_women_shoes = createAsyncThunk(
     // };
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/women-clothes",
+        "https://kenagecollapi.onrender.com/api/products/women-shoes",
         Config
       );
-      console.log("men shoes yeahh", response.data);
-
-      const data = [
-        {
-          id: 1,
-          discount: 50,
-          cover: "./images/flash/flash-1.png",
-          name: "Shoes",
-          price: 100,
-        },
-        {
-          id: 2,
-          discount: 40,
-          cover: "./images/flash/flash-2.png",
-          name: "Watch",
-          price: 20,
-        },
-        {
-          id: 3,
-          discount: 40,
-          cover: "./images/flash/flash-3.png",
-          name: "Smart Mobile Black",
-          price: 200,
-        },
-        {
-          id: 4,
-          discount: 40,
-          cover: "./images/flash/flash-4.png",
-          name: "Smart Watch Black",
-          price: 50,
-        },
-        {
-          id: 5,
-          discount: 50,
-          cover: "./images/flash/flash-1.png",
-          name: "Shoes",
-          price: 100,
-        },
-        {
-          id: 6,
-          discount: 50,
-          cover: "./images/flash/flash-3.png",
-          name: "Shoes",
-          price: 100,
-        },
-      ];
-      // console.log(token);
-      // let response = await Axios.post(
-      //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
-      //   bodyContent,
-      //   headersList
-      // );
-      // let data = await response.data
-      // let data = response.data.swaps.sort((a, b) => {
-      //   new Date(a.date) - new Date(b.date);
-      // });
-      // console.log("my datattatat from men' s ==>", data);
+      // console.log("men shoes yeahh", response.data);
 
       return response.data;
     } catch (error) {
@@ -605,87 +343,10 @@ export const fetch_boys_clothes = createAsyncThunk(
     // };
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/men-clothes",
+        "https://kenagecollapi.onrender.com/api/products/boy-clothes",
         Config
       );
       console.log("men shoes yeahh", response.data);
-
-      const data = [
-        {
-          id: 7,
-          cover: "./images/shops/shops-1.png",
-          name: "Mapple Earphones",
-          price: "180",
-          discount: "25",
-        },
-        {
-          id: 8,
-          cover: "./images/shops/shops-2.png",
-          name: "Vivo android one",
-          price: "120",
-          discount: "10",
-        },
-        {
-          id: 9,
-          cover: "./images/shops/shops-3.png",
-          name: "Sony Light",
-          price: "20",
-          discount: "50 ",
-        },
-        {
-          id: 10,
-          cover: "./images/shops/shops-4.png",
-          name: "Iphone",
-          price: "999",
-          discount: "10 ",
-        },
-        {
-          id: 11,
-          cover: "./images/shops/shops-5.png",
-          name: "Ceats wireless earphone",
-          price: "80",
-          discount: "20 ",
-        },
-        {
-          id: 12,
-          cover: "./images/shops/shops-7.png",
-          name: "Redimi Phone",
-          price: "400",
-          discount: "20 ",
-        },
-        {
-          id: 13,
-          cover: "./images/shops/shops-8.png",
-          name: "Xeats Bluetooth earphones",
-          price: "60",
-          discount: "5 ",
-        },
-        {
-          id: 14,
-          cover: "./images/shops/shops-9.png",
-          name: "Airpod",
-          price: "120",
-          discount: "10",
-        },
-        {
-          id: 15,
-          cover: "./images/shops/shops-10.png",
-          name: "Silver Cap",
-          price: "5",
-          discount: "2",
-        },
-      ];
-      // console.log(token);
-      // let response = await Axios.post(
-      //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
-      //   bodyContent,
-      //   headersList
-      // );
-      // let data = await response.data
-      // let data = response.data.swaps.sort((a, b) => {
-      //   new Date(a.date) - new Date(b.date);
-      // });
-      // console.log("my datattatat from men' s ==>", data);
 
       return response.data;
     } catch (error) {
@@ -788,87 +449,10 @@ export const fetch_girls_clothes = createAsyncThunk(
     // };
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/men-clothes",
+        "https://kenagecollapi.onrender.com/api/products/girl-clothes",
         Config
       );
       console.log("men shoes yeahh", response.data);
-
-      const data = [
-        {
-          id: 7,
-          cover: "./images/shops/shops-1.png",
-          name: "Mapple Earphones",
-          price: "180",
-          discount: "25",
-        },
-        {
-          id: 8,
-          cover: "./images/shops/shops-2.png",
-          name: "Vivo android one",
-          price: "120",
-          discount: "10",
-        },
-        {
-          id: 9,
-          cover: "./images/shops/shops-3.png",
-          name: "Sony Light",
-          price: "20",
-          discount: "50 ",
-        },
-        {
-          id: 10,
-          cover: "./images/shops/shops-4.png",
-          name: "Iphone",
-          price: "999",
-          discount: "10 ",
-        },
-        {
-          id: 11,
-          cover: "./images/shops/shops-5.png",
-          name: "Ceats wireless earphone",
-          price: "80",
-          discount: "20 ",
-        },
-        {
-          id: 12,
-          cover: "./images/shops/shops-7.png",
-          name: "Redimi Phone",
-          price: "400",
-          discount: "20 ",
-        },
-        {
-          id: 13,
-          cover: "./images/shops/shops-8.png",
-          name: "Xeats Bluetooth earphones",
-          price: "60",
-          discount: "5 ",
-        },
-        {
-          id: 14,
-          cover: "./images/shops/shops-9.png",
-          name: "Airpod",
-          price: "120",
-          discount: "10",
-        },
-        {
-          id: 15,
-          cover: "./images/shops/shops-10.png",
-          name: "Silver Cap",
-          price: "5",
-          discount: "2",
-        },
-      ];
-      // console.log(token);
-      // let response = await Axios.post(
-      //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
-      //   bodyContent,
-      //   headersList
-      // );
-      // let data = await response.data
-      // let data = response.data.swaps.sort((a, b) => {
-      //   new Date(a.date) - new Date(b.date);
-      // });
-      // console.log("my datattatat from men' s ==>", data);
 
       return response.data;
     } catch (error) {
@@ -890,66 +474,10 @@ export const fetch_girls_shoes = createAsyncThunk(
     // };
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/men-clothes",
+        "https://kenagecollapi.onrender.com/api/products/girl-shoes",
         Config
       );
       console.log("men shoes yeahh", response.data);
-
-      const data = [
-        {
-          id: 1,
-          discount: 50,
-          cover: "./images/flash/flash-1.png",
-          name: "Shoes",
-          price: 100,
-        },
-        {
-          id: 2,
-          discount: 40,
-          cover: "./images/flash/flash-2.png",
-          name: "Watch",
-          price: 20,
-        },
-        {
-          id: 3,
-          discount: 40,
-          cover: "./images/flash/flash-3.png",
-          name: "Smart Mobile Black",
-          price: 200,
-        },
-        {
-          id: 4,
-          discount: 40,
-          cover: "./images/flash/flash-4.png",
-          name: "Smart Watch Black",
-          price: 50,
-        },
-        {
-          id: 5,
-          discount: 50,
-          cover: "./images/flash/flash-1.png",
-          name: "Shoes",
-          price: 100,
-        },
-        {
-          id: 6,
-          discount: 50,
-          cover: "./images/flash/flash-3.png",
-          name: "Shoes",
-          price: 100,
-        },
-      ];
-      // console.log(token);
-      // let response = await Axios.post(
-      //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
-      //   bodyContent,
-      //   headersList
-      // );
-      // let data = await response.data
-      // let data = response.data.swaps.sort((a, b) => {
-      //   new Date(a.date) - new Date(b.date);
-      // });
-      // console.log("my datattatat from men' s ==>", data);
 
       return response.data;
     } catch (error) {
