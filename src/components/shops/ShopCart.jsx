@@ -51,6 +51,9 @@ import { add_to_cart } from "../../features/actions";
 
 const ShopCart = ({ shopItems, addToCart }) => {
   const user = useSelector((state) => state.users.currentUser);
+  const currency = useSelector((state) => state.currency.selectedCurrency)
+  const rates = useSelector((state) => state.currency.rates)
+
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const [count, setCount] = useState(0);
@@ -101,7 +104,7 @@ const ShopCart = ({ shopItems, addToCart }) => {
                   <i className="fa fa-star"></i>
                 </div>
                 <div className="price">
-                  <h4 style={{ color: "#FF5722" }}>UGX {price}.00</h4>
+                  <h4 style={{ color: "#FF5722" }}>{currency} {price * rates[currency]}.00</h4>
                   {/* step : 3  
                      if hami le button ma click garryo bahne 
                     */}

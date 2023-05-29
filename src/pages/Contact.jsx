@@ -32,22 +32,63 @@ const Contact = ({CartItem}) => {
         <Header CartItem={CartItem}/>
         <div className='w-full bg-[#f6f9fc] p-4 m-1 flex font-serif justify-center items-center box-border flex-col'>
            <h2 className='text-[47px] text-orange-500 font-bold'>About Us</h2>
-            <div className='flex mt-[20px] gap-8 w-[80%] justify-center items-center'>
-              <div className='w-[700px] h-[400px] bg-white shadow-md '>
+            <div className='flex flex-col mt-[20px] gap-8 w-[80%] justify-center items-center'>
+              {/* <div className='w-[700px] h-[400px] bg-white shadow-md '>
                   <img src={child} alt="about" className='w-full h-full rounded-md cover'/>
-              </div>
+              </div> */}
+              <h1 className='text-[35px]'>Vision</h1>
               <div className=' bg-white flex flex-wrap shadow-md rounded-md w-[100%]'>
-                <p className=' w-[700px] h-[400px] flex-wrap md:text-[25px] text-start flex p-2'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
-tenetur error, harum nesciunt ipsum debitis quas aliquid.
+                <p className='flex-wrap md:text-[25px] text-center flex p-2 text-gray-700 italic'>
+                To become the premier online destination for fashionable footwear and clothing, offering a wide
+selection for adults and kids, and providing a seamless and enjoyable shopping experience.
                 </p>
-              
               </div>
+
+            </div>
+
+            <div className='flex flex-col mt-[20px] gap-8 w-[80%] justify-center items-center'>
+              {/* <div className='w-[700px] h-[400px] bg-white shadow-md '>
+                  <img src={child} alt="about" className='w-full h-full rounded-md cover'/>
+              </div> */}
+              <h1 className='text-[35px]'>Mission</h1>
+              <div className=' bg-white flex flex-wrap shadow-md rounded-md w-[100%]'>
+                <p className='flex-wrap md:text-[25px] text-center flex p-2 text-gray-700 italic'>
+                Our mission is to empower individuals to express their unique style through high-quality footwear and
+clothing options. We strive to curate a diverse collection that caters to different tastes, ages, and
+occasions. By combining convenience, affordability, and exceptional customer service, we aim to exceed
+customer expectations and foster long-term relationships.
+At our core, we are committed to:
+
+<ul className='flex flex-col mt-[50px] ml-[100px] justify-start items-start'>
+  <li>
+     1. Offering a wide range of trendy and fashionable footwear and clothing options for adults and kids.
+  </li>
+  <li>
+    2. Providing a user-friendly and intuitive online platform that ensures a seamless shopping experience.
+  </li>
+  <li>
+    3. Curating a selection of high-quality products from reputable brands and designers.
+  </li>
+  <li>
+    4. Delivering exceptional customer service and personalized assistance to meet individual needs and
+preferences.
+  </li>
+  <li>
+    5. Embracing innovation and leveraging technology to enhance the overall shopping experience.
+  </li>
+  <li>
+  6. Ensuring transparency, trust, and security in all transactions and interactions with our customers.  
+  </li>
+  <li>
+    7. Fostering a positive and inclusive community where fashion enthusiasts can connect, share, and be
+inspired.
+  </li>
+
+</ul>
+
+                </p>
+              </div>
+              
             </div>
 
             <div className='md:w-[77%] shadow-md rounded-md p-4 mt-[50px] bg-white flex justify-center items-center'>

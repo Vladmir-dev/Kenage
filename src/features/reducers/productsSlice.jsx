@@ -11,7 +11,8 @@ import {
      fetch_girls_shoes,
      top_categories,
      new_arrivals,
-     discounted
+     discounted,
+    //  set_currency
     } from "../actions";
 
 const initialState = {
@@ -29,7 +30,8 @@ const initialState = {
     newArrivals:[],
     flashDeals:[],
     topCategories:[],
-    discounts:[]
+    discounts:[],
+    // currency:"UGX"
 }
 
 const productsSlice = createSlice({
@@ -39,6 +41,7 @@ const productsSlice = createSlice({
       
     },
     extraReducers:(builder) => {
+
         //flash deals
         builder.addCase(fetch_flash_deals.pending, (state) => {
             state.is_loading = true;
@@ -55,6 +58,26 @@ const productsSlice = createSlice({
             state.is_loading = false;
             state.error = action.payload;
         } )
+
+
+        //  //set currency
+        //  builder.addCase(set_currency.pending, (state) => {
+        //     state.is_loading = true;
+        //     state.error = false;
+        // })
+
+        // builder.addCase(set_currency.fulfilled, (state, action) => {
+        //     // console.log("payload ==>", action.payload)
+        //     state.is_loading = false;
+        //     state.currency = action.payload
+        // })
+
+        // builder.addCase(set_currency.rejected, (state, action) => {
+        //     state.is_loading = false;
+        //     state.error = action.payload;
+        // } )
+
+
 
         //discounted
         builder.addCase(discounted.pending, (state) => {

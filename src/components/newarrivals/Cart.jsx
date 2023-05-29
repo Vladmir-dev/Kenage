@@ -7,6 +7,8 @@ import { useSelector } from "react-redux"
 
 const Cart = () => {
   const arrivals = useSelector((state) => state.products.newArrivals)
+  const currency = useSelector((state) => state.currency.selectedCurrency)
+  const rates = useSelector((state) => state.currency.rates)
 
   const settings = {
     dots: false,
@@ -45,7 +47,7 @@ const Cart = () => {
                   )}
               </div>
               <h4>{val.name}</h4>
-              <span style={{color:'#FF5722'}}>${val.price}</span>
+              <span style={{color:'#FF5722'}}>{currency} {val.price * rates[currency]}</span>
             </div>
           )
         })}

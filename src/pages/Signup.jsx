@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 const Signup = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [username, setUserName] = useState("")
+    const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
 
@@ -36,6 +36,7 @@ const Signup = () => {
         }
       };
 
+
   return (
     <div className='flex w-full justify-center items-center font-serif'>
         <div className='w-[60%] hidden md:block h-full flex justify-center items-center bg-blue-500'>
@@ -46,8 +47,8 @@ const Signup = () => {
              <img src={logo} alt="logo" className='w-[150px]'/>
              {/* {password} */}
             <div className='p-2  w-[80%] shadow-2xl  rounded-md mt-[30px] flex flex-col'>
-            <input type="text" placeholder='First Name' onChange={(e) => setUserName(e.target.value)} className='p-2 border-solid border-[1px] rounded-md m-4'/>
-                {/* <input type="text" placeholder='Last Name'onChange={(e) => setLastName(e.target.value)} className='p-2 border-solid border-[1px] rounded-md m-4'/> */}
+            <input type="text" placeholder='First Name' onChange={(e) => setFirstName(e.target.value)} className='p-2 border-solid border-[1px] rounded-md m-4'/>
+                <input type="text" placeholder='Last Name'onChange={(e) => setLastName(e.target.value)} className='p-2 border-solid border-[1px] rounded-md m-4'/>
                 <input type="text" placeholder='email' onChange={(e) => setEmail(e.target.value)} className='p-2 border-solid border-[1px] rounded-md m-4'/>
                 {/* <input type="text" placeholder='Phone Number' onChange={(e) => setPhoneNumber(e.target.value)} className='p-2 border-solid border-[1px] rounded-md m-4'/> */}
                 <input type="text" placeholder='password'onChange={(e) => setPassword(e.target.value)} className='p-2 border-solid border-[1px] rounded-md m-4'/>

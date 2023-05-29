@@ -35,7 +35,10 @@ const FlashCard = ({ productItems, addToCart }) => {
   const user = useSelector((state) => state.users.currentUser);
   const products = useSelector((state) => state.products.flashDeals);
   const token = useSelector((state) => state.users.token);
+  const currency = useSelector((state) => state.currency.selectedCurrency)
+  const rates = useSelector((state) => state.currency.rates)
 
+  // console.log("rates",rates[currency])
   let length;
   if (products.length < 4) {
     length = 2;
@@ -123,7 +126,7 @@ const FlashCard = ({ productItems, addToCart }) => {
                     <i className="fa fa-star"></i>
                   </div>
                   <div className="price">
-                    <h4 style={{ color: "#FF5722" }}>UGX {price}.00 </h4>
+                    <h4 style={{ color: "#FF5722" }}>{currency} {price * rates[currency]}.00 </h4>
                     <button
                       onClick={() =>
                         // AddToCart(productItems)

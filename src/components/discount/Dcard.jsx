@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 
 const Dcard = () => {
   const discounts = useSelector((state) => state.products.discounts);
+  const currency = useSelector((state) => state.currency.selectedCurrency)
+  const rates = useSelector((state) => state.currency.rates)
 
   // let length = 2;
   // if (discounts && discounts.length < 4) {
@@ -54,7 +56,7 @@ const Dcard = () => {
                     )}
                   </div>
                   <h4>{value.name}</h4>
-                  <span style={{ color: "#FF5722" }}>UGX {value.price}</span>
+                  <span style={{ color: "#FF5722" }}>{currency} {value.price * rates[currency]}</span>
                 </div>
               </>
             );
