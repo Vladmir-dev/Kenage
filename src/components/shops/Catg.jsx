@@ -29,7 +29,7 @@ let cdata = []
      cdata = data;
   }
 
- console.log("categories",cdata)
+//  console.log("categories",cdata)
   return (
     <>
       <div className='category hidden md:block'>

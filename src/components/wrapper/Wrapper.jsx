@@ -13,17 +13,17 @@ const Wrapper = () => {
     {
       cover: <i class='fa-solid fa-id-card'></i>,
       title: "Safe Payment",
-      decs: "We offer competitive prices on our 100 million plus product any range.",
+      decs: "We provide secure payment options to ensure your personal and financial information is protected",
     },
     {
       cover: <i class='fa-solid fa-shield'></i>,
       title: "Shop With Confidence ",
-      decs: "We offer competitive prices on our 100 million plus product any range.",
+      decs: "We curate a diverse range of high-quality products from trusted brands, so you can shop with confidence",
     },
     {
       cover: <i class='fa-solid fa-headset'></i>,
       title: "24/7 Support ",
-      decs: "We offer competitive prices on our 100 million plus product any range.",
+      decs: "We are here for you round the clock. Our dedicated customer support team is ready to assist you with any inquiries, concerns, or issues you may have",
     },
   ]
   return (

@@ -4,6 +4,7 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 
 const Cart = () => {
   const arrivals = useSelector((state) => state.products.newArrivals)
@@ -36,6 +37,7 @@ const Cart = () => {
       <Slider {...settings}>
         {arrivals && arrivals.map((val, index) => {
           return (
+            <Link to={`product/${val._id}`}>
             <div className='box' key={index}>
               <div className='img m-[10px] w-[400px] h-[400px]'>
               {val.images && val.images.length > 0 && (
@@ -49,6 +51,9 @@ const Cart = () => {
               <h4>{val.name}</h4>
               <span style={{color:'#FF5722'}}>{currency} {val.price * rates[currency]}</span>
             </div>
+            </Link>
+            
+
           )
         })}
       </Slider>

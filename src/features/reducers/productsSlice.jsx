@@ -158,7 +158,7 @@ const productsSlice = createSlice({
         })
 
         builder.addCase(fetch_men_shoes.fulfilled, (state, action) => {
-            console.log("payload ==>", action.payload)
+            // console.log("payload ==>", action.payload)
             state.is_loading = false;
             state.men_shoes = action.payload;
         })
@@ -175,7 +175,7 @@ const productsSlice = createSlice({
         })
 
         builder.addCase(fetch_women_shoes.fulfilled, (state, action) => {
-            console.log("payload ==>", action.payload)
+            // console.log("payload ==>", action.payload)
             state.is_loading = false;
             state.women_shoes = action.payload;
         })
@@ -209,7 +209,7 @@ const productsSlice = createSlice({
         })
 
         builder.addCase(fetch_boys_clothes.fulfilled, (state, action) => {
-            console.log("payload ==>", action.payload)
+            // console.log("payload ==>", action.payload)
             state.is_loading = false;
             state.boy_clothes = action.payload;
         })

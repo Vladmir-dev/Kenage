@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { useSelector,useDispatch } from "react-redux"
 import Tdata from "./Tdata"
+import { Link } from "react-router-dom"
 
 const TopCart = () => {
   const category = useSelector((state) => state.products.topCategories)
@@ -34,7 +35,8 @@ const TopCart = () => {
           // console.log(value)
           return (
             <>
-              <div className='box product' key={index}>
+            <Link to={`product/${value._id}`}>
+            <div className='box product' key={index}>
                 <div className='nametop d_flex'>
                   <span className='tleft'>{value.name}</span>
                   {/* <span className='tright'>{value.desc}</span> */}
@@ -50,6 +52,8 @@ const TopCart = () => {
                   {/* <img src={value.cover} alt='' /> */}
                 </div>
               </div>
+            </Link>
+              
             </>
           )
         })}

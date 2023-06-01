@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fetch_flash_deals, add_to_cart } from "../../features/actions";
 
 const SampleNextArrow = (props) => {
@@ -35,8 +35,8 @@ const FlashCard = ({ productItems, addToCart }) => {
   const user = useSelector((state) => state.users.currentUser);
   const products = useSelector((state) => state.products.flashDeals);
   const token = useSelector((state) => state.users.token);
-  const currency = useSelector((state) => state.currency.selectedCurrency)
-  const rates = useSelector((state) => state.currency.rates)
+  const currency = useSelector((state) => state.currency.selectedCurrency);
+  const rates = useSelector((state) => state.currency.rates);
 
   // console.log("rates",rates[currency])
   let length;
@@ -98,50 +98,60 @@ const FlashCard = ({ productItems, addToCart }) => {
           console.log("name ==>", name);
 
           return (
-            <div key={key} className="box">
-              <div className="product mtop">
-                <div className="img w-[200px] h-[200px]">
-                  <span style={{ background: "#FF5722" }} className="discount">
-                    {discount.percentage}% Off
-                  </span>
-                  {images && images.length > 0 && (
-                    <img
-                      src={images[0]}
-                      alt="cover"
-                      className="cover w-full h-full"
-                    />
-                  )}
-                  <div className="product-like">
-                    <label>{count}</label> <br />
-                    <i className="fa-regular fa-heart" onClick={increment}></i>
-                  </div>
-                </div>
-                <div className="product-details">
-                  <h3>{name}</h3>
-                  <div className="rate">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                  </div>
-                  <div className="price">
-                    <h4 style={{ color: "#FF5722" }}>{currency} {price * rates[currency]}.00 </h4>
-                    <button
-                      onClick={() =>
-                        // AddToCart(productItems)
-                        dispatch(add_to_cart(productItems))
-                      }
+            <Link to={productItems._id}>
+              <div key={key} className="box">
+                <div className="product mtop">
+                  <div className="img w-[200px] h-[200px]">
+                    <span
+                      style={{ background: "#FF5722" }}
+                      className="discount"
                     >
+                      {discount.percentage}% Off
+                    </span>
+                    {images && images.length > 0 && (
+                      <img
+                        src={images[0]}
+                        alt="cover"
+                        className="cover w-full h-full"
+                      />
+                    )}
+                    <div className="product-like">
+                      <label>{count}</label> <br />
                       <i
-                        style={{ color: "#FF5722" }}
-                        className="fa fa-plus"
+                        className="fa-regular fa-heart"
+                        onClick={increment}
                       ></i>
-                    </button>
+                    </div>
+                  </div>
+                  <div className="product-details">
+                    <h3>{name}</h3>
+                    <div className="rate">
+                      <i className="fa fa-star"></i>
+                      <i className="fa fa-star"></i>
+                      <i className="fa fa-star"></i>
+                      <i className="fa fa-star"></i>
+                      <i className="fa fa-star"></i>
+                    </div>
+                    <div className="price">
+                      <h4 style={{ color: "#FF5722" }}>
+                        {currency} {price * rates[currency]}.00{" "}
+                      </h4>
+                      {/* <button
+                        onClick={() =>
+                          // AddToCart(productItems)
+                          dispatch(add_to_cart(productItems))
+                        }
+                      >
+                        <i
+                          style={{ color: "#FF5722" }}
+                          className="fa fa-plus"
+                        ></i>
+                      </button> */}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </Slider>

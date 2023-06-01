@@ -1,33 +1,77 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import '@fortawesome/fontawesome-free/css/all.css'
-import Header from '../common/header/Header'
-import Footer from '../common/footer/Footer'
-import Wrapper from './wrapper/Wrapper'
+import React from "react";
+import { useSelector } from "react-redux";
+import "@fortawesome/fontawesome-free/css/all.css";
+import Header from "../common/header/Header";
+import Footer from "../common/footer/Footer";
+import Wrapper from "./wrapper/Wrapper";
+import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
 
+const Checkout = ({ CartItem }) => {
+  const state = useSelector((state) => state.addItem);
+  const rates = useSelector((state) => state.currency.rates);
+  const currency = useSelector((state) => state.currency.selectedCurrency);
+  const cart = useSelector((state) => state.cart.cartItems);
 
-const Checkout = ({CartItem}) => {
-    const state = useSelector((state) => state.addItem)
-    const totalPrice = CartItem.reduce((price, item) => price + item.qty * item.price, 0)
+  const totalPrice = cart.reduce(
+    (price, item) => price + item.qty * item.price,
+    0
+  );
 
-    var total = 0;
-    const itemList = (item) => {
-        total = totalPrice;
-        return (
-            <li className="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 className="my-0">{item.title}</h6>
-                </div>
-                <span className="text-muted">${item.price}</span>
-            </li>
-        );
-    }
+  var total = 0;
 
-    return (
-        <>
-         <Header CartItem={CartItem}/>
-            <div className="container my-5">
-                <div className="row g-5">
+  //   const itemList = (item) => {
+  //     total = totalPrice;
+  //     return (
+  //       <li className="list-group-item d-flex justify-content-between lh-sm">
+  //         <div>
+  //           <h6 className="my-0">{item.title}</h6>
+  //         </div>
+  //         <span className="text-muted">${item.price * rates[currency]}</span>
+  //       </li>
+  //     );
+  //   };
+
+  const config = {
+    public_key: "FLWPUBK_TEST-f8006a9c64a016743f03067d5fbdc60a-X",
+    tx_ref: Date.now(),
+    amount: 100,
+    currency,
+    payment_options: "card,mobilemoney,ussd",
+    customer: {
+      email: "user@gmail.com",
+      phone_number: "070********",
+      name: "john doe",
+    },
+    customizations: {
+      title: "Kenage",
+      description: "Payment for items in cart",
+      logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
+    },
+  };
+
+  const fwConfig = {
+    ...config,
+    text: "Pay with Flutterwave",
+    callback: (response) => {
+      console.log(response);
+      closePaymentModal(); // this will close the modal programmatically
+    },
+    onClose: () => {},
+  };
+
+  return (
+    <>
+      <Header CartItem={CartItem} />
+      <div className="container my-5">
+        {/* <h1>Hello Test user</h1> */}
+
+        <div className="w-full flex justify-center items-center">
+          <div className="bg-white w-[250px] rounded-md p-2 text-[#FF5722] flex justify-center items-center border-solid hover:bg-[#FF5722] hover:text-white duration-500 border-[2px] border-[#FF5722]">
+            <FlutterWaveButton {...fwConfig} />
+          </div>
+        </div>
+
+        {/* <div className="row g-5">
                     <div className="col-md-5 col-lg-4 order-md-last">
                         <h4 className="d-flex justify-content-between align-items-center mb-3">
                             <span className="text-primary">Your cart</span>
@@ -35,7 +79,7 @@ const Checkout = ({CartItem}) => {
                         </h4>
                         <ul className="list-group mb-3">
 
-                            {CartItem.map(itemList)}
+                            {cart.map(itemList)}
 
                             <li className="list-group-item d-flex justify-content-between">
                                 <span>Total (USD)</span>
@@ -204,12 +248,12 @@ const Checkout = ({CartItem}) => {
                             <button className="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
                         </form>
                     </div>
-                </div>
-            </div>
-            <Wrapper />
-            <Footer />
-        </>
-    )
-}
+                </div> */}
+      </div>
+      <Wrapper />
+      <Footer />
+    </>
+  );
+};
 
-export default Checkout
+export default Checkout;

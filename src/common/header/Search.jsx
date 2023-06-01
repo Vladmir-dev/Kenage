@@ -16,6 +16,7 @@ import {
   fetch_girls_clothes,
   fetch_girls_shoes,
   fetch_results,
+  get_user
 } from "../../features/actions";
 import { useNavigate } from "react-router-dom";
 import { fetchCurrencyRatesAsync } from "../../features/reducers/currencySlice";
@@ -45,7 +46,7 @@ const Search = () => {
   const currency = useSelector((state) => state.currency.selectedCurrency)
   // const token = useSelector((state) => state.users.token)
 
-  console.log("currency", currency);
+  // console.log("currency", currency);
   // console.log("top arrivals ==>", arrivals);
   // console.log("women's clothes ==>", women_cloth)
   // console.log("women's shoes ==>", women_shoe)
@@ -63,6 +64,7 @@ const Search = () => {
     dispatch(new_arrivals(token));
     dispatch(discounted(token));
     dispatch(fetchCurrencyRatesAsync());
+    dispatch(get_user(token))
   }, [dispatch]);
 
   const [query, setQuery] = useState("");
@@ -84,8 +86,9 @@ const Search = () => {
       ...girl_cloth,
       ...girl_shoe,
       ...category,
-      ...discounted,
+      ...discounts,
     ];
+    // console.log("all products", allProducts)
     // console.log("all products", allProducts);
     // Perform search in the combined array
     const results = allProducts.filter((product) => {
@@ -99,7 +102,7 @@ const Search = () => {
     dispatch(fetch_results(results));
   };
 
-  console.log("results ==>", searchResults);
+  // console.log("results ==>", searchResults);
 
   return (
     <>

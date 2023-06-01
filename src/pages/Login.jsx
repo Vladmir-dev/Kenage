@@ -14,6 +14,7 @@ const Login = () => {
     let navigate = useNavigate()
     // const history = useHistory()
     const isLoading = useSelector((state) => state.users.isLoading)
+    const error = useSelector((state) => state.users.error)
     const token = useSelector((state) => state.users.token)
   
     // console.log("token ===>",token)
@@ -32,7 +33,7 @@ const Login = () => {
           const data = JSON.stringify({ email, password });
         //   console.log("data===>",data)
           dispatch(login(data));
-          console.log("begining....")
+          // console.log("begining....")
           // if(token){
           //   // console.log("token", token)
           //   // history.push("/")
@@ -65,7 +66,17 @@ const Login = () => {
                 className='border-solid border-[1px] m-4 p-2 rounded-md border-orange-500 text-orange-500 text-[25px] font-bold hover:bg-orange-500 hover:text-white duration-500'>
                    { !isLoading ? "Submit" :"Loading..." }
                 </button>
+                <div className='w-full flex justify-center items-center'>
+                  {
+                    error !== null && (
+                      <p className='text-red-600'>*{error}*</p>
+                    )
+                  }
+                  
+                </div>
+                
             </div>
+            
             <div className='mt-[20px] text-[20px] flex flex-col justify-center items-center gap-3'>
                 <p className='flex gap-2'>Don't have and account ? <Link to="/signup"><h1 className='cursor-pointer underline text-blue-500'>Sign Up</h1></Link></p>
                 <p>Forgot Password ?</p>

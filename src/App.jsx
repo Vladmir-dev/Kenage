@@ -21,6 +21,7 @@ import Otp from "./pages/Otp"
 import Search from "./pages/Search"
 import { PersistGate } from "redux-persist/integration/react"
 import { persistedStore } from "./features/store"
+import ProductDetail from "./components/ProductDetail"
 // import { Shop } from "@mui/icons-material"
 
 function App() {
@@ -89,7 +90,8 @@ function App() {
       <Router>
         {/* <Header CartItem={CartItem} /> */}
         <Routes>
-          <Route exact path='/' element={<Pages productItems={productItems} addToCart={addToCart} shopItems={shopItems} CartItem={CartItem}/>} />  
+          <Route exact path='/' element={<Pages productItems={productItems} addToCart={addToCart} shopItems={shopItems} CartItem={CartItem}/>} /> 
+          <Route path="/product/:id" element={<ProductDetail />}/> 
           <Route path='/cart' element={<Cart CartItem={CartItem} addToCart={addToCart} decreaseQty={decreaseQty} />} />
           <Route path='/shop' element={<Shop CartItem={CartItem}/>} /> 
           <Route path='/adults' element={<Adults addToCart={addToCart} shopItems={shopItems} CartItem={CartItem}/>}/>

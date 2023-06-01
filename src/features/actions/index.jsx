@@ -18,34 +18,33 @@ const Config = {
   },
 };
 
-const API_URL = 'https://api.exchangerate-api.com/v4/latest/USD';
+const API_URL = "https://api.exchangerate-api.com/v4/latest/UGX";
 
 export const fetchCurrencyRates = async () => {
   try {
     const response = await axios.get(API_URL);
     return response.data;
   } catch (error) {
-    console.error('Failed to fetch currency rates:', error);
+    console.error("Failed to fetch currency rates:", error);
     throw error;
   }
 };
 
-
 export const otp = createAsyncThunk(
   "auth/otp",
   async (code, { getState, rejectWithValue, dispatch }) => {
-    console.log("login details ===>", code);
-    // console.log("login details ===>", kenageApi)
+    // console.log("login details ===>", code);
+    console.log("code ===>", code)
     try {
       // console.log("login details ===>", code);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
-      const { data } = await axios.post(
+      const response = await axios.post(
         `https://kenagecollapi.onrender.com/api/auth/confirm/${code}`,
         Config
       );
       //  navigate("/")
-      console.log("response =====>", data);
-      return data;
+      console.log("response =====>", response.data);
+      return response.data;
     } catch (error) {
       if (error.response && error.response.data.message) {
         // dispatch(setError("Incorrect credentials"));
@@ -56,8 +55,6 @@ export const otp = createAsyncThunk(
     }
   }
 );
-
-
 
 export const login = createAsyncThunk(
   "auth/login",
@@ -67,18 +64,20 @@ export const login = createAsyncThunk(
     try {
       console.log("login details ===>", loginDetails);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
-      const { data } = await axios.post(
-        "https://kenagecollapi.onrender.com​/api/auth/login",
+      const response = await axios.post(
+        "https://kenagecollapi.onrender.com/api/auth/login",
         loginDetails,
         Config
       );
       //  navigate("/")
-      console.log("response =====>", data.token);
-      return data;
+      console.log("response =====>", response.data);
+      return response.data;
     } catch (error) {
-      if (error.response && error.response.data.message) {
+      console.log("This is the error ===>", error.response.data.error.message);
+      if (error.response && error.response.data.error.message) {
+        // console.log("This is the error ===>", error);
         // dispatch(setError("Incorrect credentials"));
-        return rejectWithValue(error.response.data.message);
+        return rejectWithValue(error.response.data.error.message);
       } else {
         return rejectWithValue(error.response.data);
       }
@@ -87,26 +86,26 @@ export const login = createAsyncThunk(
 );
 
 export const get_user = createAsyncThunk(
-  "auth/gat_user",
+  "auth/get_user",
   async (token, { getState, rejectWithValue, dispatch }) => {
-    // console.log("token ===>", token);
+    console.log("token ===>", token);
     // console.log("login details ===>", kenageApi)
     try {
       console.log("login details ===>", token.token);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
-      const { data } = await axios.get(
+      const response = await axios.get(
         "https://kenagecollapi.onrender.com​/api/auth/me",
         {
           headers: { Authorization: `Bearer ${token.token}` },
         }
       );
       //  navigate("/")
-      console.log("user data ==>", data);
-      return data;
+      console.log("user data ==>", response.data);
+      return response.data;
     } catch (error) {
-      if (error.response && error.response.data.message) {
+      if (error.response && error.response.data.error.message) {
         // dispatch(setError("Incorrect credentials"));
-        return rejectWithValue(error.response.data.message);
+        return rejectWithValue(error.response.data.error.message);
       } else {
         return rejectWithValue(error.response.data);
       }
@@ -130,9 +129,9 @@ export const signup = createAsyncThunk(
       console.log("ending...");
       return res.data;
     } catch (error) {
-      if (error.response && error.response.data.message) {
+      if (error.response && error.response.data.error.message) {
         // dispatch(setError("Incorrect credentials"));
-        return rejectWithValue(error.response.data.message);
+        return rejectWithValue(error.response.data.error.message);
       } else {
         return rejectWithValue(error.response.data);
       }
@@ -245,7 +244,6 @@ export const discounted = createAsyncThunk(
   }
 );
 
-
 export const fetch_men_clothes = createAsyncThunk(
   "products/fetch_men_clothes",
   async (token, { getState, rejectWithValue }) => {
@@ -258,9 +256,8 @@ export const fetch_men_clothes = createAsyncThunk(
         "https://kenagecollapi.onrender.com/api/products/men-clothes",
         Config
       );
-      console.log("response yeahh", response.data);
+      // console.log("response yeahh", response.data);
 
-      
       return response.data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -272,7 +269,6 @@ export const fetch_men_clothes = createAsyncThunk(
   }
 );
 
-
 export const fetch_men_shoes = createAsyncThunk(
   "products/fetch_men_shoes",
   async (token, { getState, rejectWithValue }) => {
@@ -280,14 +276,13 @@ export const fetch_men_shoes = createAsyncThunk(
     // let bodyContent = {
     //   api_key: token,
     // };
-   
+
     try {
       const response = await axios.get(
         "https://kenagecollapi.onrender.com/api/products/men-shoes",
         Config
       );
       // console.log("men shoes yeahh", response.data);
-
 
       return response.data;
     } catch (error) {
@@ -304,9 +299,8 @@ export const fetch_women_clothes = createAsyncThunk(
   "products/fetch_women_clothes",
   async (token, { getState, rejectWithValue }) => {
     console.log("token", token);
-    
-    try {
 
+    try {
       const response = await axios.get(
         "https://kenagecollapi.onrender.com/api/products/women-clothes",
         Config
@@ -378,7 +372,7 @@ export const fetch_boys_shoes = createAsyncThunk(
   "products/fetch_boys_shoes",
   async (token, { getState, rejectWithValue }) => {
     // console.log("token", token);
-   
+
     try {
       const response = await axios.get(
         "https://kenagecollapi.onrender.com/api/products/women-clothes",
@@ -477,9 +471,10 @@ export const fetch_results = createAsyncThunk(
 
 export const add_to_cart = createAsyncThunk(
   "cart/add_to_cart",
-  async (product, { getState, rejectWithValue }) => {
+  async (data, { getState, rejectWithValue }) => {
     // console.log("product ==>", product);
     try {
+      console.log("added product", data);
       // console.log(token);
       // let response = await Axios.post(
       //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
@@ -491,7 +486,7 @@ export const add_to_cart = createAsyncThunk(
       //   new Date(a.date) - new Date(b.date);
       // });
       // console.log("my datattatat from men' s ==>", data);
-      return product;
+      return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
@@ -504,7 +499,7 @@ export const add_to_cart = createAsyncThunk(
 
 export const decrease_qty = createAsyncThunk(
   "cart/decrease_qty",
-  async (product, { getState, rejectWithValue }) => {
+  async (data, { getState, rejectWithValue }) => {
     // console.log("product ==>", product);
     try {
       // console.log(token);
@@ -518,7 +513,7 @@ export const decrease_qty = createAsyncThunk(
       //   new Date(a.date) - new Date(b.date);
       // });
       // console.log("my datattatat from men' s ==>", data);
-      return product;
+      return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
@@ -528,7 +523,6 @@ export const decrease_qty = createAsyncThunk(
     }
   }
 );
-
 
 // export const set_currency = createAsyncThunk(
 //   "products/set_currency",
@@ -556,5 +550,3 @@ export const decrease_qty = createAsyncThunk(
 //     }
 //   }
 // );
-
-
