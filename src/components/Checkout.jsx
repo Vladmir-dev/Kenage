@@ -1,23 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
+// import { useParams } from "react-router";
 import "@fortawesome/fontawesome-free/css/all.css";
 import Header from "../common/header/Header";
 import Footer from "../common/footer/Footer";
 import Wrapper from "./wrapper/Wrapper";
-import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+import axios from "axios";
+// import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
 
 const Checkout = ({ CartItem }) => {
+  const [value, setValue] = useState("");
   const state = useSelector((state) => state.addItem);
   const rates = useSelector((state) => state.currency.rates);
   const currency = useSelector((state) => state.currency.selectedCurrency);
   const cart = useSelector((state) => state.cart.cartItems);
 
+//   const sp = useParams();
+//   console.log("service provider",sp.id)
   const totalPrice = cart.reduce(
     (price, item) => price + item.qty * item.price,
     0
   );
 
   var total = 0;
+
+  const handlepay = async () => {
+    if (value === "") {
+      console.log("Please fill in details");
+    } else {
+      const tokenUrl = "https://sandbox.momodeveloper.mtn.com/collection/token/";
+      await axios
+        .post(tokenUrl, {
+          headers: {
+            "Content-Type": "application/json",
+            "X-Reference-Id": "123456789",
+            "Ocp-Apim-Subscription-key": "06fc21a3ac1c4384931ea2d69e70deb6",
+          },
+        })
+        .then((res) => {
+          console.log("token", res);
+          const token = res.data.access_token;
+          console.log(token);
+          const paymentUrl = "https://sandbox.momodeveloper.mtn.com/collection/v1_0/requesttopay";
+
+          axios
+            .post(paymentUrl, {
+              amount: totalPrice * rates[currency],
+              currency: currency,
+              externalId: "123456789",
+              payer: {
+                partyIdType: "MSISDN",
+                partyId: value.slice(1),
+              },
+              payerMessage: "Payment for items in cart",
+              PayeeNote: "Payment for items in cart",
+            })
+            .then((res) => {
+              console.log("Payment request", res);
+              const paymentId = res.data.paymentId;
+              const paymentUrl = "" + paymentId;
+              axios.get(paymentUrl).then((res) => {
+                console.log("Payment request with id", res);
+                //make an order next
+              });
+            });
+        })
+        .catch((err) => {
+          console.log("Payment failed");
+          console.log(er);
+        });
+    }
+  };
 
   //   const itemList = (item) => {
   //     total = totalPrice;
@@ -31,33 +86,33 @@ const Checkout = ({ CartItem }) => {
   //     );
   //   };
 
-  const config = {
-    public_key: "FLWPUBK_TEST-f8006a9c64a016743f03067d5fbdc60a-X",
-    tx_ref: Date.now(),
-    amount: 100,
-    currency,
-    payment_options: "card,mobilemoney,ussd",
-    customer: {
-      email: "user@gmail.com",
-      phone_number: "070********",
-      name: "john doe",
-    },
-    customizations: {
-      title: "Kenage",
-      description: "Payment for items in cart",
-      logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
-    },
-  };
+  //   const config = {
+  //     public_key: "FLWPUBK_TEST-f8006a9c64a016743f03067d5fbdc60a-X",
+  //     tx_ref: Date.now(),
+  //     amount: 100,
+  //     currency,
+  //     payment_options: "card,mobilemoney,ussd",
+  //     customer: {
+  //       email: "user@gmail.com",
+  //       phone_number: "070********",
+  //       name: "john doe",
+  //     },
+  //     customizations: {
+  //       title: "Kenage",
+  //       description: "Payment for items in cart",
+  //       logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
+  //     },
+  //   };
 
-  const fwConfig = {
-    ...config,
-    text: "Pay with Flutterwave",
-    callback: (response) => {
-      console.log(response);
-      closePaymentModal(); // this will close the modal programmatically
-    },
-    onClose: () => {},
-  };
+  //   const fwConfig = {
+  //     ...config,
+  //     text: "Pay with Flutterwave",
+  //     callback: (response) => {
+  //       console.log(response);
+  //       closePaymentModal(); // this will close the modal programmatically
+  //     },
+  //     onClose: () => {},
+  //   };
 
   return (
     <>
@@ -65,9 +120,24 @@ const Checkout = ({ CartItem }) => {
       <div className="container my-5">
         {/* <h1>Hello Test user</h1> */}
 
-        <div className="w-full flex justify-center items-center">
+        <div className="w-full flex flex-col justify-center items-center gap-8 mt-[50px]">
+          <div className="flex flex-col gap-5 justify-center items-center">
+            <label className="text-[25px]">Enter Phone Number</label>
+            <PhoneInput
+              placeholder="Enter phone number"
+              defaultCountry="UG"
+              value={value}
+              onChange={setValue}
+              style={{
+                border: "solid 2px gray",
+                borderRadius: 10,
+                padding: 10,
+              }}
+            />
+          </div>
           <div className="bg-white w-[250px] rounded-md p-2 text-[#FF5722] flex justify-center items-center border-solid hover:bg-[#FF5722] hover:text-white duration-500 border-[2px] border-[#FF5722]">
-            <FlutterWaveButton {...fwConfig} />
+            Pay
+            {/* <FlutterWaveButton {...fwConfig} /> */}
           </div>
         </div>
 

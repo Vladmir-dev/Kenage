@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add_to_cart, decrease_qty } from "../../features/actions";
 import Wrapper from "../../components/wrapper/Wrapper";
+import mtn from "../../assets/mtn.jpg";
+import airtel from "../../assets/airtel.png";
 import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
 
 const Cart = ({ CartItem, addToCart, decreaseQty }) => {
@@ -14,7 +16,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.users.currentUser);
-  
+
   const cart = useSelector((state) => state.cart.cartItems);
   const currency = useSelector((state) => state.currency.selectedCurrency);
   const rates = useSelector((state) => state.currency.rates);
@@ -27,12 +29,12 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
 
   // prodcut qty total
 
-  console.log("user ===>",user)
+  console.log("user ===>", user);
 
   const handleCheckOut = () => {
-    console.log("checkout user",user)
+    console.log("checkout user", user);
     if (user) {
-      navigate("/checkout");
+      navigate(`/checkout`);
     } else {
       navigate("/login");
     }
@@ -152,13 +154,52 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
             </div>
           </div>
         </div>
-        <div className="w-full flex item center md:mt-[50px] justify-center font-serif">
-          <button
+        <div className="w-full flex flex-col items-center md:mt-[50px] justify-center text-[37px] font-serif">
+          <h1>Pay To </h1>
+          <div className="flex text-[25px] gap-8 mt-[20px]">
+            <div className="flex justify-center items-center gap-2">
+              <div className="w-[50px] h-[50px]">
+                <img
+                  src={mtn}
+                  alt="mtn"
+                  className="w-[100px] h-[100px] rounded-md"
+                />
+              </div>
+              <h1>+256 776521504</h1>
+            </div>
+            <div className="flex justify-center items-center gap-2">
+              <div className="w-[50px] h-[50px]">
+                <img
+                src={airtel}
+                alt="airtel"
+                className="w-full h-full rounded-md"
+              />
+              </div>
+              +256 750689091
+            </div>
+            
+          </div>
+          {/* <div className="flex justify-center items-center gap-8 mt-3">
+            <div
+              onClick={handleCheckOut()}
+              className="w-[200px] h-[200px] hover:scale-110 duration-500 shadow-md hover:shadow-xl"
+            >
+              <img src={mtn} alt="mtn" className="w-full h-full rounded-md" />
+            </div>
+            <div
+              onClick={handleCheckOut()}
+              className="w-[200px] h-[200px] hover:scale-110 duration-500 shadow-md hover:shadow-xl "
+            >
+              
+            </div>
+          </div> */}
+
+          {/* <button
             onClick={handleCheckOut}
             className="hover:bg-[#FF5722] border-solid border-[2px] border-[#FF5722] p-4 rounded-md font-bold text-[#FF5722] duration-500 shadow-xl hover:text-white text-[20px]"
           >
             Proceed To Checkout
-          </button>
+          </button> */}
         </div>
       </section>
       <Wrapper />

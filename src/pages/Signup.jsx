@@ -45,12 +45,12 @@ const Signup = () => {
 
   return (
     <div className="flex w-full justify-center items-center font-serif">
-      <div className="w-[60%] hidden md:block h-full flex justify-center items-center bg-blue-500">
-        <img src={adults} alt="bg" className="w-full h-[100vh]" />
-      </div>
+      <div className='flex justify-center items-center '>
+            <img src={logo} alt="logo" className='w-[400px]'/>
+          </div>
       <div className="md:w-[40%] w-full h-[100vh] md:p-4 p-[20px]  flex flex-col justify-center items-center">
         <h1 className="text-[47px] text-orange-500 mb-[20px]">Sign Up</h1>
-        <img src={logo} alt="logo" className="w-[150px]" />
+        {/* <img src={logo} alt="logo" className="w-[150px]" /> */}
         {/* {password} */}
         <div className="p-2  w-[80%] shadow-2xl  rounded-md mt-[30px] flex flex-col">
           <input

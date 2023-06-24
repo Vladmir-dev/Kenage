@@ -9,6 +9,7 @@ import Footer from "../common/footer/Footer";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { add_to_cart } from "../features/actions";
 import Wrapper from "./wrapper/Wrapper";
+import ProductImage from "./ProductImage";
 
 const ProductDetail = () => {
   //   const [cartBtn, setCartBtn] = useState("Add to Cart");
@@ -29,7 +30,7 @@ const ProductDetail = () => {
   const [show, setShow] = useState(true);
   const [rating, setRating] = useState(0);
   const [cartbtn, setCartBtn] = useState("Add To Cart");
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   const handleStarClick = (value) => {
     setRating(value);
@@ -91,48 +92,33 @@ const ProductDetail = () => {
         <div className="md:flex md:gap-[50px] bg-white p-4 shadow-md">
           <div className=" ">
             {product.images && product.images[0] && (
-              <div className="flex flex-col ">
-                {product.discount && product.discount.percentage && (
-                  <div className="  md:w-[500px] h-[50px] flex justify-start items-start p-2 absolute mt-2">
-                    <h1 className="text-center font-bold bg-black text-white rounded-full w-[50px] right-0 text-[15px]">
-                      {product.discount.percentage}% Off
-                    </h1>
-                  </div>
-                )}
+              <ProductImage images={product.images} />
+              // <div className="flex flex-col ">
+              //   {product.discount && product.discount.percentage && (
+              //     <div className="  md:w-[500px] h-[50px] flex justify-start items-start p-2 absolute mt-2">
+              //       <h1 className="text-center font-bold bg-black text-white rounded-full w-[50px] right-0 text-[15px]">
+              //         {product.discount.percentage}% Off
+              //       </h1>
+              //     </div>
+              //   )}
 
-                <img
-                  src={product.images[0]}
-                  alt={product.name}
-                  className="md:w-[500px] w-[100%] h-[400px] md:h-[600px] object-cover"
-                />
-                <div className="mt-4 flex gap-3">
-                  {remimg &&
-                    remimg.map((item, index) => (
-                      <img
-                        key={index}
-                        src={item}
-                        alt={product.name}
-                        className="md:w-[120px] w-[70px] h-[60px] md:h-[120px] object-cover"
-                      />
-                    ))}
-
-                  {/* <img
-                    src={product.images[0]}
-                    alt={product.name}
-                    className="md:w-[120px] w-[70px] h-[60px] md:h-[120px] object-cover"
-                  />
-                  <img
-                    src={product.images[0]}
-                    alt={product.name}
-                    className="md:w-[120px] w-[70px] h-[60px] md:h-[120px] object-cover"
-                  />
-                  <img
-                    src={product.images[0]}
-                    alt={product.name}
-                    className="md:w-[120px] w-[70px] h-[60px] md:h-[120px] object-cover"
-                  /> */}
-                </div>
-              </div>
+              //   <img
+              //     src={product.images[0]}
+              //     alt={product.name}
+              //     className="md:w-[500px] w-[100%] h-[400px] md:h-[600px] object-cover"
+              //   />
+              //   <div className="mt-4 flex gap-3">
+              //     {remimg &&
+              //       remimg.map((item, index) => (
+              //         <img
+              //           key={index}
+              //           src={item}
+              //           alt={product.name}
+              //           className="md:w-[120px] w-[70px] h-[60px] md:h-[120px] object-cover"
+              //         />
+              //       ))}
+              //   </div>
+              // </div>
             )}
           </div>
 
@@ -225,28 +211,28 @@ const ProductDetail = () => {
               </select>
             </div>
             <button
-              onClick={() =>{
-                if(size !== "" && color !== ""){
-                dispatch(
-                  add_to_cart({
-                    product: product,
-                    size: size,
-                    color: color,
-                  })
-                );
-              }else{
-                setError("select Size & color")
-                // console.log("select size and color")
-              }
-                setCartBtn("PRODUCT ADDED")
-              }
-                
-              }
+              onClick={() => {
+                if (size !== "" && color !== "") {
+                  dispatch(
+                    add_to_cart({
+                      product: product,
+                      size: size,
+                      color: color,
+                    })
+                  );
+                } else {
+                  setError("select Size & color");
+                  // console.log("select size and color")
+                }
+                setCartBtn("PRODUCT ADDED");
+              }}
               className="text-white bg-[#FF5722] font-bold duration-500 p-3 hover:text-[#FF5722] hover:bg-white hover:border-solid hover:border-[2px] rounded-full"
             >
               {cartbtn}
             </button>
-              <p className="text-red-500 mt-[-20px] ml-[50px] text-[16px]">{error}</p>
+            <p className="text-red-500 mt-[-20px] ml-[50px] text-[16px]">
+              {error}
+            </p>
             <div>
               <h1 className="text-[27px]">Description :</h1>
               <p className="ml-[25px] italic text-gray-500">

@@ -96,7 +96,7 @@ function App() {
           <Route path='/shop' element={<Shop CartItem={CartItem}/>} /> 
           <Route path='/adults' element={<Adults addToCart={addToCart} shopItems={shopItems} CartItem={CartItem}/>}/>
           <Route path='/children' element={<Children addToCart={addToCart} shopItems={shopItems} CartItem={CartItem}/>} /> 
-          <Route path="/checkout" element={<Checkout CartItem={CartItem}/>} />
+          <Route path="/checkout/:id" element={<Checkout CartItem={CartItem}/>} />
           <Route path="/login" element={<Login />}/>
           <Route path="/signup" element={<Signup />}/> 
           <Route path="/profile" element={<Profile CartItem={CartItem} />}/> 

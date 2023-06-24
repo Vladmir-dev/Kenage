@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -26,11 +27,13 @@ const Footer = () => {
           </div>
 
           <div className="box">
+            <Link to="/contact">
             <h2>About Us</h2>
+            </Link>
+            
             <ul>
-              <li>Careers</li>
-              <li>Our Stores</li>
-              <li>Our Cares</li>
+              {/* <li>Our Stores</li> */}
+              {/* <li>Our Cares</li> */}
               <li>Terms & Conditions</li>
               <li>Privacy Policy</li>
             </ul>
@@ -40,19 +43,19 @@ const Footer = () => {
             <ul>
               <li>Help Center </li>
               <li>How to Buy </li>
-              <li>Track Your Order </li>
-              <li>Corporate & Bulk Purchasing </li>
-              <li>Returns & Refunds </li>
+              {/* <li>Track Your Order </li> */}
+              {/* <li>Corporate & Bulk Purchasing </li> */}
+              {/* <li>Returns & Refunds </li> */}
             </ul>
           </div>
           <div className="box">
-            <h2>Contact Us</h2>
+            <h2>Location</h2>
             <ul>
-              <li>
+              {/* <li>
                 70 Washington Square South, New York, NY 10012, United States{" "}
-              </li>
-              <li>Email: uilib.help@gmail.com</li>
-              <li>Phone: +1 1123 456 780</li>
+              </li> */}
+              <li>Email: info@kenagecoll.com</li>
+              <li>Phone: +256 776521504, +256 0750689091, +256 757217184</li>
             </ul>
           </div>
         </div>
