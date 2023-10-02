@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import LargImageDisplay from "./LargImageDisplay";
 import ImageThumbnail from "./ImageThumbnail";
 
-const ProductImage = ({ images }) => {
-  const [selectedImage, setSelectedImage] = useState(images[0]);
+const ProductImage = ({ images, selectedImage, setSelectedImage }) => {
+  
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
@@ -12,7 +12,7 @@ const ProductImage = ({ images }) => {
   return (
     <div>
       <LargImageDisplay image={selectedImage} />
-      <div className="mt-[10px]">
+      <div className="mt-[10px] grid grid-cols-4">
         {images.map((image, index) => (
           <ImageThumbnail
             key={index}

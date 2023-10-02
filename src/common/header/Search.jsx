@@ -46,7 +46,7 @@ const Search = () => {
   const currency = useSelector((state) => state.currency.selectedCurrency)
   // const token = useSelector((state) => state.users.token)
 
-  // console.log("currency", currency);
+  // console.log("token", token);
   // console.log("top arrivals ==>", arrivals);
   // console.log("women's clothes ==>", women_cloth)
   // console.log("women's shoes ==>", women_shoe)
@@ -102,7 +102,7 @@ const Search = () => {
     dispatch(fetch_results(results));
   };
 
-  // console.log("results ==>", searchResults);
+      
 
   return (
     <>
@@ -137,7 +137,7 @@ const Search = () => {
                     className="px-2 md:py-[2px] rounded-full md:text-[10px] text-white"
                     style={{ background: "#FF5722" }}
                   >
-                    {cart.length === 0 ? "" : cart.length}
+                    {cart.length === 0 ? "0" : cart.length}
                   </span>
                 </Link>
               </div>

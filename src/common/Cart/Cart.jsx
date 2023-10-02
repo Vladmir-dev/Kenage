@@ -1,17 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import "./style.css";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { add_to_cart, decrease_qty } from "../../features/actions";
+import { add_to_cart, decrease_qty, create_order } from "../../features/actions";
 import Wrapper from "../../components/wrapper/Wrapper";
-import mtn from "../../assets/mtn.jpg";
-import airtel from "../../assets/airtel.png";
-import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
+// import mtn from "../../assets/mtn.jpg";
+// import airtel from "../../assets/airtel.png";
+// import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
 
 const Cart = ({ CartItem, addToCart, decreaseQty }) => {
+  const [method, setMethod] = useState("")
+  const [location, setLocation] = useState("")
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -20,8 +22,10 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
   const cart = useSelector((state) => state.cart.cartItems);
   const currency = useSelector((state) => state.currency.selectedCurrency);
   const rates = useSelector((state) => state.currency.rates);
+  const loading = useSelector((state) => state.cart.is_loading)
+  const token = useSelector((state) => state.users.token)
 
-  console.log("cart", cart);
+ 
   const totalPrice = cart.reduce(
     (price, item) => price + item.qty * item.price,
     0
@@ -29,44 +33,33 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
 
   // prodcut qty total
 
-  console.log("user ===>", user);
+  
+
+  
 
   const handleCheckOut = () => {
     console.log("checkout user", user);
+    let orderData = {
+      userId: user._id, // Replace with the actual customer ID
+      deliveryMethod: method,
+      address: location,
+      products:cart,
+      amount: totalPrice,
+      status: 'pending', // Replace with the initial status if needed
+    };
+    console
     if (user) {
-      navigate(`/checkout`);
+      console.log("cart order data ==>",orderData.products)
+      dispatch(create_order({payload:orderData, token:token}))
+      // navigate(`/checkout`);
     } else {
       navigate("/login");
     }
   };
 
-  const config = {
-    public_key: "FLWPUBK_TEST-f8006a9c64a016743f03067d5fbdc60a-X",
-    tx_ref: Date.now(),
-    amount: 100,
-    currency: "UGX",
-    payment_options: "card,mobilemoney,ussd",
-    customer: {
-      email: "user@gmail.com",
-      phone_number: "070********",
-      name: "john doe",
-    },
-    customizations: {
-      title: "Kenage",
-      description: "Payment for items in cart",
-      logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
-    },
-  };
 
-  const fwConfig = {
-    ...config,
-    text: "Pay with Flutterwave",
-    callback: (response) => {
-      console.log(response);
-      closePaymentModal(); // this will close the modal programmatically
-    },
-    onClose: () => {},
-  };
+
+
 
   return (
     <>
@@ -143,7 +136,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
             })}
           </div>
 
-          <div className="bg-white m-[10px] md:w-[300px] md:h-[150px] p-6 rounded-md">
+          <div className="bg-white m-[10px] md:max-w-[500px] md:w-[400px] p-6 rounded-md">
             <h2 style={{ color: "#FF5722" }}>Cart Summary</h2>
 
             <div className="m-[5px] d_flex">
@@ -152,10 +145,33 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
                 {currency} {totalPrice * rates[currency]}
               </h3>
             </div>
+            <div>
+              <div className="mt-[20px]">
+                <h2 style={{ color: "#FF5722" }} className="">Delivery Method</h2>
+                <select onChange={(e) =>  setMethod(e.target.value)} className="m-[10px] px-[30px] py-[5px] border-solid border-[2px] border-black rounded-md bg-white">
+                  <option value="Pick Up">Pick Up</option>
+                  <option value="Delivery">Delivery</option>
+                </select>
+
+                {
+                  method === "Delivery" && (
+                    <div className="w-full flex flex-col gap-2 mt-[10px]">
+                   <label className="text-[#FF5722]">Location</label>
+                   <input type="text" onChange={(e) => setLocation(e.target.value)} className="border-solid border-[2px] borderblack rounded-md px-[2px] py-[4px]"/>
+                </div>
+                  )
+                }
+                
+              </div>
+            </div>
           </div>
+
         </div>
+
         <div className="w-full flex flex-col items-center md:mt-[50px] justify-center text-[37px] font-serif">
-          <h1>Pay To </h1>
+          
+          {/* <button className="">CheckOut</button> */}
+          {/* <h1>Pay To </h1>
           <div className="flex text-[25px] gap-8 mt-[20px]">
             <div className="flex justify-center items-center gap-2">
               <div className="w-[50px] h-[50px]">
@@ -176,7 +192,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
               />
               </div>
               +256 750689091
-            </div>
+            </div> 
             
           </div>
           {/* <div className="flex justify-center items-center gap-8 mt-3">
@@ -194,12 +210,15 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
             </div>
           </div> */}
 
-          {/* <button
+          <button
             onClick={handleCheckOut}
             className="hover:bg-[#FF5722] border-solid border-[2px] border-[#FF5722] p-4 rounded-md font-bold text-[#FF5722] duration-500 shadow-xl hover:text-white text-[20px]"
           >
-            Proceed To Checkout
-          </button> */}
+            {
+              loading ? "Loading..." :"Proceed To Checkout"
+            }
+            
+          </button>
         </div>
       </section>
       <Wrapper />

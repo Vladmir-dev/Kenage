@@ -19,7 +19,7 @@ const Categories = () => {
       <div className='category hidden md:block'>
         {data.map((value, index) => {
           return (
-            <Link to={`/${value.cateName.toLocaleLowerCase()}`}>
+            <Link key={index} to={`/${value.cateName.toLocaleLowerCase()}`}>
             <div className='box f_flex' key={index}>
               <img src={value.cateImg} alt='' />
               <span>{value.cateName}</span>

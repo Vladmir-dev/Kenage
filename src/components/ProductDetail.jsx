@@ -31,12 +31,11 @@ const ProductDetail = () => {
   const [rating, setRating] = useState(0);
   const [cartbtn, setCartBtn] = useState("Add To Cart");
   const [error, setError] = useState("");
+  
 
   const handleStarClick = (value) => {
     setRating(value);
   };
-  //   console.log("men shoes", men_sho)
-
   const allProducts = [
     ...men_cloth,
     ...men_shoe,
@@ -47,43 +46,13 @@ const ProductDetail = () => {
     ...girl_cloth,
     ...girl_shoe,
   ];
-
-  //   console.log("all products ===>", allProducts)
-  {
-    /* Now we need a product id which is pass from the product page. */
-  }
   const proid = useParams();
-  //   console.log("prodid ==>", proid);
   const proDetail = allProducts.filter((x) => x._id == proid.id);
-
   const product = proDetail[0];
   const remimg = product.images.slice(1);
-  const incart = cart.filter((x) => x._id === product._id);
-
-  // console.log("incart", incart);
-  // console.log(remimg);
-
-  // We need to store useDispatch in a variable
+  const incart = cart.filter((x) => x._id === proid.id);
   const dispatch = useDispatch();
-
-  //   const handleCart = (product) => {
-  //     if (cartBtn === "Add to Cart") {
-  //       dispatch(addItem(product));
-  //       setCartBtn("Remove from Cart");
-  //     } else {
-  //       dispatch(delItem(product));
-  //       setCartBtn("Add to Cart");
-  //     }
-  //   };
-
-  // const handle_add_to_cart = (data) => {
-  //   // const proExists = cart.filter((x) => x._id) === product._id;
-  //   // if (proExists) {
-  //   // setShow(false);
-  //   // } else {
-  //   dispatch(add_to_cart(data));
-  //   // }
-  // };
+  const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
   return (
     <div className="bg-[#f6f9fc] font-serif">
@@ -92,33 +61,7 @@ const ProductDetail = () => {
         <div className="md:flex md:gap-[50px] bg-white p-4 shadow-md">
           <div className=" ">
             {product.images && product.images[0] && (
-              <ProductImage images={product.images} />
-              // <div className="flex flex-col ">
-              //   {product.discount && product.discount.percentage && (
-              //     <div className="  md:w-[500px] h-[50px] flex justify-start items-start p-2 absolute mt-2">
-              //       <h1 className="text-center font-bold bg-black text-white rounded-full w-[50px] right-0 text-[15px]">
-              //         {product.discount.percentage}% Off
-              //       </h1>
-              //     </div>
-              //   )}
-
-              //   <img
-              //     src={product.images[0]}
-              //     alt={product.name}
-              //     className="md:w-[500px] w-[100%] h-[400px] md:h-[600px] object-cover"
-              //   />
-              //   <div className="mt-4 flex gap-3">
-              //     {remimg &&
-              //       remimg.map((item, index) => (
-              //         <img
-              //           key={index}
-              //           src={item}
-              //           alt={product.name}
-              //           className="md:w-[120px] w-[70px] h-[60px] md:h-[120px] object-cover"
-              //         />
-              //       ))}
-              //   </div>
-              // </div>
+              <ProductImage images={product.images} selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
             )}
           </div>
 
@@ -180,7 +123,7 @@ const ProductDetail = () => {
               )}
             </div>
 
-            <div className="flex gap-5 items-center">
+            {/* <div className="flex gap-5 items-center">
               <h1 className="font-bold text-gray-500">Color</h1>
 
               <select
@@ -194,13 +137,13 @@ const ProductDetail = () => {
                 <option value="green">Green</option>
                 <option value="curcasian">Curcasian</option>
               </select>
-            </div>
+            </div> */}
 
             <div className="flex gap-5 items-center">
               <h1 className="font-bold text-gray-500">Size</h1>
 
               <select
-                className="text-black "
+                className="text-black border-solid border-[2px] border-black rounded-md bg-white px-[10px] py-[2px]"
                 onChange={(e) => setSize(e.target.value)}
               >
                 <option></option>
@@ -212,12 +155,12 @@ const ProductDetail = () => {
             </div>
             <button
               onClick={() => {
-                if (size !== "" && color !== "") {
+                if (size !== "") {
                   dispatch(
                     add_to_cart({
                       product: product,
                       size: size,
-                      color: color,
+                      selectedImageURL:selectedImage,
                     })
                   );
                 } else {

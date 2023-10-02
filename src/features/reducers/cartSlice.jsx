@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { add_to_cart, decrease_qty } from "../actions";
+import { add_to_cart, decrease_qty,create_order } from "../actions";
+import { useNavigate } from "react-router-dom";
+
+// let navigate = useNavigate()
 
 const cartSlice = createSlice({
   name: "cart",
@@ -7,6 +10,7 @@ const cartSlice = createSlice({
     is_loading: false,
     error: false,
     cartItems: [],
+    order_filled:false
   },
   reducers: {
     // addToCart: (state,action) => {
@@ -40,19 +44,22 @@ const cartSlice = createSlice({
             : item
         );
       } else {
-        if (data.color && data.size) {
-          state.cartItems.push({
-            ...data.product,
-            qty: 1,
-            color: data.color,
-            size: data.size,
-          });
-        } else {
-          state.cartItems.push({
-            ...data.product,
-            qty: 1,
-          });
-        }
+        state.cartItems.push({
+          ...data.product,
+          qty: 1,
+          size: data.size,
+          selectedImageURL: data.selectedImageURL,
+          productId:data.product._id
+        });
+
+        // if (data.selectedImageURL && data.size) {
+          
+        // } else {
+        //   state.cartItems.push({
+        //     ...data.product,
+        //     qty: 1,
+        //   });
+        // }
       }
 
     });
@@ -93,6 +100,23 @@ const cartSlice = createSlice({
       state.is_loading = false;
       state.error = action.payload;
     });
+`  
+     `
+    builder.addCase(create_order.pending, (state, action) => {
+      state.is_loading = true;
+      state.error = false;
+    });
+
+    builder.addCase(create_order.fulfilled, (state, action) => {
+      state.is_loading = false;
+      console.log("create order data",action.payload)
+      // document.location.href = '/checkout'
+      // if(action.payload.status)
+    });
+    builder.addCase(create_order.rejected, (state, action) => {
+      // state.error = true
+      console.log(action.payload)
+    })
   },
 });
 

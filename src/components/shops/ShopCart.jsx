@@ -23,6 +23,8 @@ const ShopCart = ({ shopItems, addToCart }) => {
     }
   };
 
+  
+
   return (
     <>
       {shopItems.map((shopItems, index) => {
@@ -32,7 +34,7 @@ const ShopCart = ({ shopItems, addToCart }) => {
 
         // const url = images[0];
         return (
-          <Link to={`/product/${shopItems._id}`}>
+          <Link key={index} to={`/product/${shopItems._id}`}>
             <div className="box" key={index}>
               <div className="product mtop">
                 <div className="img md:w-[200px] md:h-[200px]">
@@ -58,7 +60,7 @@ const ShopCart = ({ shopItems, addToCart }) => {
                   </div>
                 </div>
                 <div className="product-details">
-                  <h3>{name}</h3>
+                  <h3 className="pt-4">{name}</h3>
                   <div className="rate">
                     {array.map((_, index) => (
                       <i key={index} className="fa fa-star"></i>

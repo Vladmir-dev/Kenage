@@ -4,6 +4,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 // import { useDispatch } from "react-redux";
 import axios from "axios";
+import {domain, localdomain} from '../../common/helpers/helper'
 import { kenageApi, kenageApiConfig } from "../../components/API/kenageAPI";
 // import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom"
@@ -11,6 +12,8 @@ import { kenageApi, kenageApiConfig } from "../../components/API/kenageAPI";
 // const API_URL = ""
 // const navigate = useNavigate()
 // const dispatch = useDispatch()
+
+const baseurl = localdomain
 
 const Config = {
   headers: {
@@ -39,7 +42,7 @@ export const otp = createAsyncThunk(
       // console.log("login details ===>", code);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.post(
-        `https://kenagecollapi.onrender.com/api/auth/confirm/${code}`,
+        `${baseurl}/auth/confirm/${code}`,
         Config
       );
       //  navigate("/")
@@ -59,13 +62,13 @@ export const otp = createAsyncThunk(
 export const login = createAsyncThunk(
   "auth/login",
   async (loginDetails, { getState, rejectWithValue, dispatch }) => {
-    // console.log("login details ===>", loginDetails);
+    console.log("login details ===>", loginDetails);
     // console.log("login details ===>", kenageApi)
     try {
       console.log("login details ===>", loginDetails);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.post(
-        "https://kenagecollapi.onrender.com/api/auth/login",
+        `${baseurl}/auth/login`,
         loginDetails,
         Config
       );
@@ -89,12 +92,12 @@ export const get_user = createAsyncThunk(
   "auth/get_user",
   async (token, { getState, rejectWithValue, dispatch }) => {
     console.log("token ===>", token);
-    // console.log("login details ===>", kenageApi)
+    
     try {
-      console.log("login details ===>", token.token);
+      // console.log("login details ===>", token.token);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com​/api/auth/me",
+        `${baseurl}/auth/me`,
         {
           headers: { Authorization: `Bearer ${token.token}` },
         }
@@ -120,13 +123,13 @@ export const signup = createAsyncThunk(
     try {
       console.log("details in try==>", signupDetails);
       const res = await axios.post(
-        "https://kenagecollapi.onrender.com​/api/auth/register",
+        `${baseurl}/auth/register`,
         signupDetails,
         Config
       );
-      console.log("beginiing...");
+      // console.log("beginiing...");
       console.log("response =======>", res.data);
-      console.log("ending...");
+      // console.log("ending...");
       return res.data;
     } catch (error) {
       if (error.response && error.response.data.error.message) {
@@ -159,7 +162,7 @@ export const fetch_flash_deals = createAsyncThunk(
 
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/flash-deals",
+        `${baseurl}/products/flash-deals`,
         Config
       );
       // console.log("response yeahh", response.data);
@@ -182,7 +185,7 @@ export const top_categories = createAsyncThunk(
 
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/top-category",
+        `${baseurl}/products/top-category`,
         Config
       );
       // console.log("Top Categories", response.data);
@@ -201,11 +204,11 @@ export const top_categories = createAsyncThunk(
 export const new_arrivals = createAsyncThunk(
   "products/new_arrivals",
   async (token, { getState, rejectWithValue }) => {
-    console.log("The fetching data", token);
+    // console.log("The fetching data", token);
 
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/new-arrivals",
+        `${baseurl}/products/new-arrivals`,
         Config
       );
       // console.log("Top Categories", response.data);
@@ -224,11 +227,11 @@ export const new_arrivals = createAsyncThunk(
 export const discounted = createAsyncThunk(
   "products/discounted",
   async (token, { getState, rejectWithValue }) => {
-    console.log("The fetching data", token);
+    // console.log("The fetching data", token);
 
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/discounted",
+        `${baseurl}/products/discounted`,
         Config
       );
       // console.log("Top Categories", response.data);
@@ -247,13 +250,13 @@ export const discounted = createAsyncThunk(
 export const fetch_men_clothes = createAsyncThunk(
   "products/fetch_men_clothes",
   async (token, { getState, rejectWithValue }) => {
-    console.log("token", token);
+    // console.log("token", token);
     // let bodyContent = {
     //   api_key: token,
     // };
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/men-clothes",
+        `${baseurl}/products/men-clothes`,
         Config
       );
       // console.log("response yeahh", response.data);
@@ -272,14 +275,14 @@ export const fetch_men_clothes = createAsyncThunk(
 export const fetch_men_shoes = createAsyncThunk(
   "products/fetch_men_shoes",
   async (token, { getState, rejectWithValue }) => {
-    console.log("token", token);
+    // console.log("token", token);
     // let bodyContent = {
     //   api_key: token,
     // };
 
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/men-shoes",
+        `${baseurl}/products/men-shoes`,
         Config
       );
       // console.log("men shoes yeahh", response.data);
@@ -298,11 +301,11 @@ export const fetch_men_shoes = createAsyncThunk(
 export const fetch_women_clothes = createAsyncThunk(
   "products/fetch_women_clothes",
   async (token, { getState, rejectWithValue }) => {
-    console.log("token", token);
+    // console.log("token", token);
 
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/women-clothes",
+        `${baseurl}/products/women-clothes`,
         Config
       );
       // console.log("men shoes yeahh", response.data);
@@ -321,13 +324,13 @@ export const fetch_women_clothes = createAsyncThunk(
 export const fetch_women_shoes = createAsyncThunk(
   "products/fetch_women_shoes",
   async (token, { getState, rejectWithValue }) => {
-    console.log("token", token);
+    // console.log("token", token);
     // let bodyContent = {
     //   api_key: token,
     // };
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/women-shoes",
+        `${baseurl}/products/women-shoes`,
         Config
       );
       // console.log("men shoes yeahh", response.data);
@@ -346,13 +349,13 @@ export const fetch_women_shoes = createAsyncThunk(
 export const fetch_boys_clothes = createAsyncThunk(
   "products/fetch_boys_clothes",
   async (token, { getState, rejectWithValue }) => {
-    console.log("token", token);
+    // console.log("token", token);
     // let bodyContent = {
     //   api_key: token,
     // };
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/boy-clothes",
+        `${baseurl}/products/boy-clothes`,
         Config
       );
       // console.log("men shoes yeahh", response.data);
@@ -375,7 +378,7 @@ export const fetch_boys_shoes = createAsyncThunk(
 
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/women-clothes",
+        `${baseurl}/products/women-clothes`,
         Config
       );
       // console.log("men shoes yeahh", response.data);
@@ -400,7 +403,7 @@ export const fetch_girls_clothes = createAsyncThunk(
     // };
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/girl-clothes",
+        `${baseurl}/products/girl-clothes`,
         Config
       );
       // console.log("men shoes yeahh", response.data);
@@ -425,7 +428,7 @@ export const fetch_girls_shoes = createAsyncThunk(
     // };
     try {
       const response = await axios.get(
-        "https://kenagecollapi.onrender.com/api/products/girl-shoes",
+        `${baseurl}/products/girl-shoes`,
         Config
       );
       // console.log("men shoes yeahh", response.data);
@@ -446,17 +449,7 @@ export const fetch_results = createAsyncThunk(
   async (data, { getState, rejectWithValue }) => {
     // console.log("data ==>", data);
     try {
-      // console.log(token);
-      // let response = await Axios.post(
-      //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
-      //   bodyContent,
-      //   headersList
-      // );
-      // let data = await response.data
-      // let data = response.data.swaps.sort((a, b) => {
-      //   new Date(a.date) - new Date(b.date);
-      // });
-      // console.log("my datattatat from men' s ==>", data);
+   
 
       return data;
     } catch (error) {
@@ -472,20 +465,8 @@ export const fetch_results = createAsyncThunk(
 export const add_to_cart = createAsyncThunk(
   "cart/add_to_cart",
   async (data, { getState, rejectWithValue }) => {
-    // console.log("product ==>", product);
     try {
-      console.log("added product", data);
-      // console.log(token);
-      // let response = await Axios.post(
-      //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
-      //   bodyContent,
-      //   headersList
-      // );
-      // let data = await response.data
-      // let data = response.data.swaps.sort((a, b) => {
-      //   new Date(a.date) - new Date(b.date);
-      // });
-      // console.log("my datattatat from men' s ==>", data);
+      // console.log("added product", data);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -502,17 +483,6 @@ export const decrease_qty = createAsyncThunk(
   async (data, { getState, rejectWithValue }) => {
     // console.log("product ==>", product);
     try {
-      // console.log(token);
-      // let response = await Axios.post(
-      //   "http://194.195.113.231:8000/api/v1/get-agent-swaps",
-      //   bodyContent,
-      //   headersList
-      // );
-      // let data = await response.data
-      // let data = response.data.swaps.sort((a, b) => {
-      //   new Date(a.date) - new Date(b.date);
-      // });
-      // console.log("my datattatat from men' s ==>", data);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -520,6 +490,33 @@ export const decrease_qty = createAsyncThunk(
       } else {
         return rejectWithValue(error.response.data);
       }
+    }
+  }
+);
+
+export const create_order = createAsyncThunk(
+  "cart/create_order",
+  async ({payload,token}, { getState, rejectWithValue }) => {
+    console.log("product ==>", payload);
+    try {
+      console.log("The token",token);
+      let response = await axios.post(
+        `${baseurl}/orders`,
+        JSON.stringify(payload),
+        {
+          headers: { Authorization: `Bearer ${token.token}` },
+        }
+      );
+      const data = await response.data
+      console.log("order response", data)
+      return data;
+    } catch (error) {
+      console.log("order error ==>", error)
+      // if (error.response && error.response.data.message) {
+      //   return rejectWithValue(error.response.data.message);
+      // } else {
+      //   return rejectWithValue(error.response.data);
+      // }
     }
   }
 );

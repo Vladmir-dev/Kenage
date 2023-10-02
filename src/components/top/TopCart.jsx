@@ -34,9 +34,9 @@ const TopCart = () => {
         {category && category.map((value, index) => {
           // console.log(value)
           return (
-            <>
+            <div key={index} >
             <Link to={`product/${value._id}`}>
-            <div className='box product' key={index}>
+            <div className='box product'>
                 <div className='nametop d_flex'>
                   <span className='tleft'>{value.name}</span>
                   {/* <span className='tright'>{value.desc}</span> */}
@@ -54,7 +54,7 @@ const TopCart = () => {
               </div>
             </Link>
               
-            </>
+            </div>
           )
         })}
       </Slider>

@@ -26,53 +26,53 @@ const Checkout = ({ CartItem }) => {
 
   var total = 0;
 
-  const handlepay = async () => {
-    if (value === "") {
-      console.log("Please fill in details");
-    } else {
-      const tokenUrl = "https://sandbox.momodeveloper.mtn.com/collection/token/";
-      await axios
-        .post(tokenUrl, {
-          headers: {
-            "Content-Type": "application/json",
-            "X-Reference-Id": "123456789",
-            "Ocp-Apim-Subscription-key": "06fc21a3ac1c4384931ea2d69e70deb6",
-          },
-        })
-        .then((res) => {
-          console.log("token", res);
-          const token = res.data.access_token;
-          console.log(token);
-          const paymentUrl = "https://sandbox.momodeveloper.mtn.com/collection/v1_0/requesttopay";
+//   const handlepay = async () => {
+//     if (value === "") {
+//       console.log("Please fill in details");
+//     } else {
+//       const tokenUrl = "https://sandbox.momodeveloper.mtn.com/collection/token/";
+//       await axios
+//         .post(tokenUrl, {
+//           headers: {
+//             "Content-Type": "application/json",
+//             "X-Reference-Id": "123456789",
+//             "Ocp-Apim-Subscription-key": "06fc21a3ac1c4384931ea2d69e70deb6",
+//           },
+//         })
+//         .then((res) => {
+//           console.log("token", res);
+//           const token = res.data.access_token;
+//           console.log(token);
+//           const paymentUrl = "https://sandbox.momodeveloper.mtn.com/collection/v1_0/requesttopay";
 
-          axios
-            .post(paymentUrl, {
-              amount: totalPrice * rates[currency],
-              currency: currency,
-              externalId: "123456789",
-              payer: {
-                partyIdType: "MSISDN",
-                partyId: value.slice(1),
-              },
-              payerMessage: "Payment for items in cart",
-              PayeeNote: "Payment for items in cart",
-            })
-            .then((res) => {
-              console.log("Payment request", res);
-              const paymentId = res.data.paymentId;
-              const paymentUrl = "" + paymentId;
-              axios.get(paymentUrl).then((res) => {
-                console.log("Payment request with id", res);
-                //make an order next
-              });
-            });
-        })
-        .catch((err) => {
-          console.log("Payment failed");
-          console.log(er);
-        });
-    }
-  };
+//           axios
+//             .post(paymentUrl, {
+//               amount: totalPrice * rates[currency],
+//               currency: currency,
+//               externalId: "123456789",
+//               payer: {
+//                 partyIdType: "MSISDN",
+//                 partyId: value.slice(1),
+//               },
+//               payerMessage: "Payment for items in cart",
+//               PayeeNote: "Payment for items in cart",
+//             })
+//             .then((res) => {
+//               console.log("Payment request", res);
+//               const paymentId = res.data.paymentId;
+//               const paymentUrl = "" + paymentId;
+//               axios.get(paymentUrl).then((res) => {
+//                 console.log("Payment request with id", res);
+//                 //make an order next
+//               });
+//             });
+//         })
+//         .catch((err) => {
+//           console.log("Payment failed");
+//           console.log(er);
+//         });
+//     }
+//   };
 
   //   const itemList = (item) => {
   //     total = totalPrice;
@@ -113,6 +113,8 @@ const Checkout = ({ CartItem }) => {
   //     },
   //     onClose: () => {},
   //   };
+
+
 
   return (
     <>

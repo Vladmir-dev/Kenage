@@ -29,7 +29,7 @@ const authSlice = createSlice({
       console.log("login token", action.payload);
       state.isLoading = false;
       state.token = action.payload;
-      console.log("token", state.token);
+      // console.log("token", state.token);
       window.location.href = "/";
     });
 
@@ -46,8 +46,9 @@ const authSlice = createSlice({
 
     builder.addCase(signup.fulfilled, (state, action) => {
       state.isLoading = false;
+      console.log("action payload", action.payload)
       state.message = action.payload;
-      window.location.href = "/";
+      // window.location.href = "/";
     });
 
     builder.addCase(signup.rejected, (state, action) => {
@@ -79,7 +80,7 @@ const authSlice = createSlice({
     });
 
     builder.addCase(get_user.fulfilled, (state, action) => {
-      console.log("slice user =>", action.payload);
+      // console.log("slice user =>", action.payload);
       state.isLoading = false;
       state.currentUser = action.payload;
     });
